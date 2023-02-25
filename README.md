@@ -1,6 +1,6 @@
 # README
 
-A repository of config files, dotfiles, and miscellaneous for my terminals 
+A repository of config files, dotfiles, and miscellaneous for the terminal 
 and related tools.
 
 Folders:
