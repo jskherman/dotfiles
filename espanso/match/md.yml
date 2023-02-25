@@ -1,20 +1,20 @@
 # Markdown and Obsidian.md specific snippets
 
 matches:
-  - triggers: [";adm", ";callout"]
+  - triggers: [";adm", ";callout", "admÆ"]
     form: |
       > [![[admtype]]]+ [[title]]
       >
       > $|$
     form_fields:
       admtype:
-        type: choice
+        type: list
         values:
-          - "NOTE"
-          - "TIP"
-          - "WARNING"
-          - "CAUTION"
-          - "IMPORTANT"
+          - "note"
+          - "tip"
+          - "warning"
+          - "caution"
+          - "important"
 
   # Highlights
   - triggers: [";==1"]
