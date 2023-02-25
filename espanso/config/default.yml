@@ -1,0 +1,12 @@
+# ============================= #
+#                               #
+#  espanso configuration file   #
+#                               #
+# ============================= #
+
+# Config Toggles
+
+search_shortcut: ALT+SHIFT+SPACE
+# toggle_key: ALT
+# passive_key: RIGHT_CTRL
+# enable_passive: true
