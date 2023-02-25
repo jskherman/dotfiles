@@ -1,0 +1,75 @@
+# Markdown and Obsidian.md specific snippets
+
+matches:
+  - triggers: [";adm", ";callout"]
+    form: |
+      > [![[admtype]]]+ [[title]]
+      >
+      > $|$
+    form_fields:
+      admtype:
+        type: choice
+        values:
+          - "NOTE"
+          - "TIP"
+          - "WARNING"
+          - "CAUTION"
+          - "IMPORTANT"
+
+  # Highlights
+  - triggers: [";==1"]
+    replace: "*==$|$==*"
+  - triggers: [";==2"]
+    replace: "**==$|$==**"
+  - triggers: [";==3"]
+    replace: "***==$|$==***"
+  - triggers: [";==y", "!yellow"]
+    replace: "<mark style='background:yellow'>$|$</mark>"
+  - triggers: [";==r", "!red", "!pink"]
+    replace: "<mark style='background:red'>$|$</mark>"
+  - triggers: [";==g", "!green", "!lime"]
+    replace: "<mark style='background:lime'>$|$</mark>"
+  - triggers: [";==b", "!blue", "!cyan"]
+    replace: "<mark style='background:cyan'>$|$</mark>"
+
+  # Quarto Markdown
+  - triggers: [";qmd"]
+    replace: |
+      ---
+      date: {{timestamp}}
+      title: 
+      # subtitle: 
+      # description: 
+      # author: 
+      # image: 
+      # image-alt: 
+      # categories: 
+      ---
+
+      ## Heading 1
+
+      Hello world.
+    vars:
+      - name: timestamp
+        type: date
+        params:
+          format: "%Y-%m-%dT%T%z"
+
+  # Hugo
+  - triggers: [";hugo"]
+    form: |
+      ---
+      title: [[title]]
+      date: {{timestamp}}
+      lastmod: {{timestamp}}
+      tags: [[[tags]]]
+      description: >
+          meta_description here
+      ---
+
+      $|$
+    vars:
+      - name: timestamp
+        type: date
+        params:
+          format: "%Y-%m-%dT%T%:z"

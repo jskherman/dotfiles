@@ -1,0 +1,43 @@
+# Simple text replacement
+
+matches:
+  # Letters
+  - triggers: ["n~"]
+    replace: "ñ"
+    # n tilde
+    propagate_case: true
+  - triggers: ["e~"]
+    replace: "é"
+    # e acute
+
+  # Symbols
+  - triggers: [";em"]
+    replace: "—"
+    # em dash
+  - triggers: [";en"]
+    replace: "–"
+    # en dash
+  - triggers: [";deg"]
+    replace: "°"
+    # degree
+  - triggers: ["!nbsp"]
+    replace: " "
+    # non-breaking space
+  - triggers: [";php", ";peso", "P~"]
+    replace: "₱"
+    # peso sign
+  - triggers: [";sec"]
+    replace: "§"
+    # section sign
+  - triggers: [";copy"]
+    replace: "⧉"
+    # copy sign
+
+  # Punctuation
+  - triggers: [';"']
+    replace: "“”"
+    # double quotes
+
+  # Phrases
+  - triggers: [";focus"]
+    replace: "🎧 Focus Time"

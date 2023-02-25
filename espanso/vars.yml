@@ -1,0 +1,31 @@
+global_vars:
+  - name: days_lived
+    type: script
+    params:
+      args:
+        - python
+        - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\scripts\\dates.pyw"
+        - calc_days_lived
+  - name: ordinal_day
+    type: script
+    params:
+      args:
+        - python
+        - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\scripts\\dates.pyw"
+        - ordinal_day
+  - name: "mtime"
+    type: "date"
+    params:
+      format: "%H%M"
+  - name: "otime"
+    type: "date"
+    params:
+      format: "%H:%M"
+  - name: "iso_today"
+    type: "date"
+    params:
+      format: "%Y-%m-%d"
+  - name: "reg_today"
+    type: "date"
+    params:
+      format: "%b %d, %Y"

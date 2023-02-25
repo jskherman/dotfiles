@@ -1,0 +1,6 @@
+# Private folders
+.vscode
+private/
+
+# Packages
+packages/

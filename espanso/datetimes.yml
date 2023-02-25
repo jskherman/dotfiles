@@ -1,0 +1,54 @@
+# Date and Time snippets
+
+matches:
+  # Days lived
+  - triggers: [";day"]
+    replace: "{{days_lived}}"
+  - triggers: [";hday"]
+    replace: "### D{{days_lived}}: {{iso_today}}"
+  - triggers: [";log"]
+    replace: "Today is day #{{days_lived}}."
+
+  # Today
+  - triggers: [";today"]
+    replace: "{{iso_today}}"
+  - triggers: [";thisday"]
+    replace: "{{reg_today}} [Day {{days_lived}}]"
+
+  # Time
+  - triggers: [";dt"]
+    replace: "`{{otime}}` $|$"
+  - triggers: [";mt"]
+    replace: "{{mtime}}H $|$"
+
+  # Timestamps
+  - triggers: [";iso", ";timestamp", ";datetime"]
+    replace: "{{timestamp}}"
+    vars:
+      - name: timestamp
+        type: date
+        params:
+          format: "%Y-%m-%dT%T%z"
+  - triggers: [";unix"]
+    replace: "{{unix_timestamp}}"
+    vars:
+      - name: unix_timestamp
+        type: date
+        params:
+          format: "%s"
+
+  # ID Timestamp
+  - triggers: [";id"]
+    replace: "{{timestamp_id}}"
+    vars:
+      - name: timestamp_id
+        type: date
+        params:
+          format: "%Y%m%d%H%M%S"
+  - triggers: [";mid"]
+    replace: "{{timestamp_mid}}"
+    vars:
+      - name: timestamp_mid
+        type: date
+        params:
+          format: "%Y%m%d%H%M%S%3f"

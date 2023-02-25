@@ -1,0 +1,9 @@
+imports:
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\private\\personal_info.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\vars.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\datetimes.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\katex.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\md.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\simple_text_replace.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\packages\\english-lorem\\package.yml"
+  - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\packages\\table-topics\\package.yml"

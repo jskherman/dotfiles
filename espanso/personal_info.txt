@@ -1,0 +1,68 @@
+##### Personal Variables #####
+#
+# NOTE: This makes use of case propagation so that we can use cases like
+#       lowercase, UPPERCASE, and Title Case.
+#
+#       See https://espanso.org/docs/matches/basics/#case-propagation
+#       for more information.
+#
+# USAGE:  Rename this file's extension from `txt` to `yml` and change the
+#         values in the `replace` field here to your desired values
+#
+matches:
+  ### Personal Info ###
+  - triggers: [";fname"]
+    replace: "your first name here"
+    uppercase_style: "capitalize_words"
+    propagate_case: true
+  - triggers: [";mname"]
+    replace: "your middle name here"
+    uppercase_style: "capitalize_words"
+    propagate_case: true
+  - triggers: [";lname"]
+    replace: "your last name here"
+    uppercase_style: "capitalize_words"
+    propagate_case: true
+  - triggers: [";name"]
+    replace: "your name here"
+    uppercase_style: "capitalize_words"
+    propagate_case: true
+  - triggers: [";fullname"]
+    replace: "your full name here"
+    uppercase_style: "capitalize_words"
+    propagate_case: true
+  - triggers: [";addr"]
+    replace: "your address here"
+
+  ### Email ###
+  - triggers: ["@@"]
+    replace: "hello@example.com"
+
+  ### URLs ###
+  - triggers: [";;web"]
+    replace: "https://jskherman.com"
+    # Personal Website
+  - triggers: [";;contact"]
+    replace: "https://jskherman.com/about/#contact-me"
+    # Contact Me
+  - triggers: [";;github"]
+    replace: "https://github.com/jskherman"
+    # GitHub
+  - triggers: [";;linkedin"]
+    replace: "https://linkedin.com/in/jskherman"
+    # LinkedIn
+  - triggers: [";;mastodon"]
+    replace: "https://mathstodon.xyz/@jskherman"
+    # Mastodon
+  - triggers: [";;tip", ";;kofi", ";;ko-fi"]
+    replace: "https://ko-fi.com/jskherman"
+    # Ko-fi
+  - triggers: [";sci"]
+    replace: "http://sci-hub.ru/$|$"
+    # Sci-Hub
+  - triggers: [";;nohello"]
+    replace: "https://aka.ms/nohello"
+    # No Hello
+  - triggers: [";;spooky"]
+    replace: "https://archive.md/newest/https://tiramisu.bearblog.dev/dont-be-spooky/"
+    # Spooky
