@@ -1,0 +1,75 @@
+# LaTeX math symbols
+
+matches:
+  # Brackets
+  - triggers: ["();;"]
+    replace: "\\left( $|$ \\right)"
+  - triggers: ["[];;"]
+    replace: "\\left[ $|$ \\right]"
+  - triggers: ["{};;"]
+    replace: "\\left\\{ $|$ \\right\\}"
+  - triggers: ["$$;;"]
+    replace: "$$$|$$$"
+
+  # Environments
+  - triggers: ["fra;;"]
+    replace: "\\frac{$|$}{}"
+    # Fraction
+  - triggers: ["\\text;;"]
+    replace: "\\text{$|$}"
+    # Text
+  - triggers: ["env;;"]
+    replace: |
+      \begin{{{formi.environ}}}
+      $|$
+      \end{{{formi.environ}}}
+    vars:
+      # Environment
+      - name: formi
+        type: form
+        params:
+          layout: "Environment: [[environ]]"
+          fields:
+            environ:
+              type: list
+              values:
+                - "align"
+                - "align*"
+                - "aligned"
+                - "alignedat"
+                - "array"
+                - "Bmatrix"
+                - "bmatrix"
+                - "cases"
+                - "CD"
+                - "eqnarray"
+                - "eqnarray*"
+                - "equation"
+                - "equation*"
+                - "gather"
+                - "gather*"
+                - "gathered"
+                - "matrix"
+                - "multline"
+                - "multline*"
+                - "pmatrix"
+                - "smallmatrix"
+                - "split"
+                - "subarray"
+                - "Vmatrix"
+                - "vmatrix"
+
+  - triggers: ["cenv;;"]
+    replace: |
+      \begin{{{formi.environ}}}
+      $|$
+      \end{{{formi.environ}}}
+    vars:
+      # Custom Environment
+      - name: formi
+        type: form
+        params:
+          layout: "Environment: [[environ]]"
+          fields:
+            environ:
+              multiline: false
