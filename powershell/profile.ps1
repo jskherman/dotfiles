@@ -15,16 +15,25 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Custom Aliases
+### Custom Aliases ###
 New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
 
-# Custom Functions
+### Custom Functions ###
+# Git add, commit, push
 function gitacp { git add .; git commit -m "$args"; git push}
+
+# Deface image with solid color, deface at https://github.com/ORB-HD/deface
 function censorf { deface "$args" --boxes --replacewith solid -o "$args"}
+
+# Rich text preview with emoji support, mostly for markdown files
 function rview { rich "$args" --emoji -y -w 90}
+
+# Python pip freeze to file in UTF8 encoding
 function pipf { python -m pip freeze | Out-File -Encoding UTF8 "$args"}
+
+# Find files from OneDrive sync conflicts
 function findconflicts {
   param (
     [string[]]$IgnoreDirs = @() # An optional array of directories to exclude from the search
