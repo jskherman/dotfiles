@@ -19,14 +19,14 @@ global_vars:
     params:
       args:
         - python
-        - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\scripts\\dates.pyw"
+        - "%CONFIG%\\scripts\\dates.pyw"
         - calc_days_lived
   - name: ordinal_day
     type: script
     params:
       args:
         - python
-        - "E:\\OneDrive\\Documents\\Workspace\\dotfiles\\espanso\\scripts\\dates.pyw"
+        - "%CONFIG%\\scripts\\dates.pyw"
         - ordinal_day
   - name: "mtime"
     type: "date"
