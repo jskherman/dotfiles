@@ -5,4 +5,5 @@ and related tools.
 
 Folders:
 - `espanso`: espanso snippets
-- `powershell`: powershell profile and modules
+- `powershell`: PowerShell profile and modules
+
