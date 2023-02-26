@@ -7,7 +7,7 @@ in my [espanso](https://espanso.org/) configuration.
 
 - The `config` folder contains the configuration file for espanso.
 - The `match` folder contains the different snippets I have.
-- The `packages` folder contains the different packages I have installed.
+- The `match/packages` folder contains the different packages I have installed.
 - The `scripts` folder contains the different scripts I have written to help
   me with espanso and do some different expansions that I can't do with
   espanso alone.
