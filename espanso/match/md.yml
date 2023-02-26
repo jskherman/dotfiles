@@ -57,12 +57,12 @@ matches:
 
   # Hugo
   - triggers: [";hugo"]
-    form: |
+    replace: |
       ---
-      title: [[title]]
+      title: {{metaform.title}}
       date: {{timestamp}}
       lastmod: {{timestamp}}
-      tags: [[[tags]]]
+      tags: [{{metaform.tags}}]
       description: >
           meta_description here
       ---
@@ -73,3 +73,9 @@ matches:
         type: date
         params:
           format: "%Y-%m-%dT%T%:z"
+      - name: metaform
+        type: form
+        params:
+          layout: |
+            title: [[title]]
+            tags: [[tags]]
