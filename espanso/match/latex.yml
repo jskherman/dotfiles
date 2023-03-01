@@ -11,13 +11,56 @@ matches:
   - triggers: ["$$;;"]
     replace: "$$$|$$$"
 
+  # Operators
+  - triggers: ["der;;"] # Derivative
+    replace: "\\frac{d}{d{{formi.var}}} \\left( $|$ \\right)"
+    vars:
+      - name: formi
+        type: form
+        params:
+          layout: "Variable: [[var]]"
+          fields:
+            var:
+              multiline: false
+  - triggers: ["int;;"] # Indefinite Integral
+    replace: "\\int \\left( $|$ \\right) \\, d{{formi.var}}"
+    vars:
+      - name: formi
+        type: form
+        params:
+          layout: "Variable: [[var]]"
+          fields:
+            var:
+              multiline: false
+  - triggers: ["dint;;"] # Definite Integral
+    replace: "\\int^{ {{formi.upper}} }_{ {{formi.lower}} } \\left( $|$ \\right) \\, d{{formi.var}}"
+    vars:
+      - name: formi
+        type: form
+        params:
+          layout: |
+            Variable: [[var]]
+            Upper Bound: [[upper]]
+            Lower Bound: [[lower]]
+          fields:
+            var:
+              multiline: false
+            upper:
+              multiline: false
+            lower:
+              multiline: false
+  - triggers: ["la;;"] # Laplace Transform
+    replace: "\\mathcal{L} \\left\\{ $|$ \\right\\}"
+  - triggers: ["ila;;"] # Inverse Laplace Transform
+    replace: "\\mathcal{L}^{-1} \\left\\{ $|$ \\right\\}"
+
   # Environments
-  - triggers: ["fra;;"]
+  - triggers: ["fra;;"] # Fraction
     replace: "\\frac{$|$}{}"
-    # Fraction
-  - triggers: ["\\text;;"]
+  - triggers: ["\\text;;"] # Text
     replace: "\\text{$|$}"
-    # Text
+  - triggers: ["box;;"] # Text
+    replace: "\\boxed{$|$}"
   - triggers: ["env;;"]
     replace: |
       \begin{{{formi.environ}}}
