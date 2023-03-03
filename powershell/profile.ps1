@@ -47,6 +47,17 @@ function findconflicts {
     | Resolve-Path | Select-Object -ExpandProperty ProviderPath | ForEach-Object { $_.Substring($baseDir.ToString().Length + 1) }
 }
 
+# Function to download YouTube videos with yt-dlp
+function dlyt {
+  param (
+    [string]$Format = "video" # The format to download the video in, either "video" or "audio"
+  )
 
-
-
+  if ($Format -eq "video") {
+    yt-dlp --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --sub-format "srt/best" --sub-lang en --write-sub --embed-subs --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --downloader aria2c $args
+  } elseif ($Format -eq "audio") {
+    yt-dlp --format "bestaudio[ext=m4a]" --extract-audio --audio-format mp3 --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --downloader aria2c $args
+  } else {
+    Write-Error "Invalid format specified. Please specify either 'video' or 'audio'."
+  }
+}
