@@ -63,15 +63,54 @@ function dlyt {
   }
 }
 
-# Convert videos to 720p H265 MP4
-function vid2mp4 {
+# # Convert videos to various formats
+# function convert-vid {
+#     [CmdletBinding()]
+#     param (
+#         [Parameter(Mandatory = $true)]
+#         [string]$in,
+#         [ValidateSet('MP4', 'GIF', 'WEBM', 'MKV', 'MP3')]
+#         [string]$format = 'MP4',
+#         [int]$res = 720
+#     )
+
+#     # Set the output file name and extension based on the input file name
+#     $out = [System.IO.Path]::ChangeExtension($in, ".$format")
+
+#     if (-not (Test-Path $in)) {
+#         Write-Error "Input file '$in' not found."
+#         return
+#     }
+
+#     # Choose the appropriate codec based on the output format
+#     switch ($format.ToUpper()) {
+#         'GIF' { $codec = 'gif' }
+#         'MKV' { $codec = 'libx265' }
+#         'MP3' { $codec = 'libmp3lame' }
+#         'WEBM' { $codec = 'libvpx-vp9' }
+#         default { $codec = 'libx265' }
+#     }
+
+#     $ffmpegArgs = @("-i", "$in", "-c:v", $codec, "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-y", "$out")
+
+#     try {
+#         & ffmpeg.exe $ffmpegArgs
+#     } catch {
+#         Write-Error "Failed to convert video: $_"
+#     }
+# }
+
+# Convert videos to various formats
+function convert-vid {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
         [string]$in,
-        [Parameter(Mandatory = $true)]
-        [string]$out,
-        [int]$res = 720
+        [string]$out = $null,
+        [ValidateSet('MP4', 'GIF', 'WEBM', 'MKV', 'MP3')]
+        [string]$format = 'MP4',
+        [int]$res = 720,
+        [int]$fps = 15
     )
 
     if (-not (Test-Path $in)) {
@@ -79,7 +118,19 @@ function vid2mp4 {
         return
     }
 
-    $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "$out")
+    if (!$out) {
+        $out = [System.IO.Path]::ChangeExtension($in, ".$format")
+    }
+
+    # Define the output file extension based on the specified format
+    switch ($format.ToUpper()) {
+        'GIF' { $ffmpegArgs = @("-i", "$in", "-vf", "scale=-2:$res", "-r", "$fps", "-f", "gif", "-y", "$out") }
+        'MKV' { $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "-y", "$out") }
+        'MP3' { $ffmpegArgs = @("-i", "$in", "-vn", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
+        'WEBM' { $ffmpegArgs = @("-i", "$in", "-c:v", "libvpx-vp9", "-b:v", "2M", "-vf", "scale=-2:$res", "-c:a", "libopus", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
+        default { $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "-y", "$out") }
+    }
+
     try {
         & ffmpeg.exe $ffmpegArgs
     } catch {
