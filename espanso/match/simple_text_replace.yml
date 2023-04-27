@@ -20,7 +20,7 @@ matches:
   - triggers: [";deg"]
     replace: "°"
     # degree
-  - triggers: ["!nbsp"]
+  - triggers: ["!nbsp",";nbsp"]
     replace: " "
     # non-breaking space
   - triggers: [";php", ";peso", "P~"]
