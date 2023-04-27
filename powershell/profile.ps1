@@ -11,6 +11,7 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 ### Enable autocomplete commands ###
+. E:\OneDrive\Documents\Workspace\dotfiles\powershell\deta.ps1
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -60,4 +61,28 @@ function dlyt {
   } else {
     Write-Error "Invalid format specified. Please specify either 'video' or 'audio'."
   }
+}
+
+# Convert videos to 720p H265 MP4
+function vid2mp4 {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$in,
+        [Parameter(Mandatory = $true)]
+        [string]$out,
+        [int]$res = 720
+    )
+
+    if (-not (Test-Path $in)) {
+        Write-Error "Input file '$in' not found."
+        return
+    }
+
+    $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "$out")
+    try {
+        & ffmpeg.exe $ffmpegArgs
+    } catch {
+        Write-Error "Failed to convert video: $_"
+    }
 }
