@@ -18,6 +18,8 @@ matches:
   # Time
   - triggers: [";dt"]
     replace: "`{{otime}}` $|$"
+  - triggers: [";ft"]
+    replace: "=={{otime}}== $|$"
   - triggers: [";mt"]
     replace: "{{mtime}}H $|$"
 
