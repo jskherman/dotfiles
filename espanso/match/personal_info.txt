@@ -51,9 +51,6 @@ matches:
   - triggers: [";;linkedin"]
     replace: "https://linkedin.com/in/jskherman"
     # LinkedIn
-  - triggers: [";;mastodon"]
-    replace: "https://mathstodon.xyz/@jskherman"
-    # Mastodon
   - triggers: [";;tip", ";;kofi", ";;ko-fi"]
     replace: "https://ko-fi.com/jskherman"
     # Ko-fi
