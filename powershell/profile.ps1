@@ -35,6 +35,10 @@ function rview { rich "$args" --emoji -y -w 90}
 # Python pip freeze to file in UTF8 encoding
 function pipf { python -m pip freeze | Out-File -Encoding UTF8 "$args"}
 
+function conwebp {
+    python "E:\OneDrive\Documents\Workspace\dotfiles\powershell\cwebp.py"
+}
+
 # Find files from OneDrive sync conflicts
 function findconflicts {
   param (
@@ -108,7 +112,7 @@ function convert-vid {
         [Parameter(Mandatory = $true)]
         [string]$in,
         [string]$out = $null,
-        [ValidateSet('MP4', 'GIF', 'WEBM', 'MKV', 'MP3')]
+        [ValidateSet('mp4', 'gif', 'webm', 'mkv', 'mp3')]
         [string]$format = 'MP4',
         [int]$res = 720,
         [int]$fps = 15
@@ -127,11 +131,11 @@ function convert-vid {
     }
 
     # Define the output file extension based on the specified format
-    switch ($format.ToUpper()) {
-        'GIF' { $ffmpegArgs = @("-i", "$in", "-vf", "scale=-2:$res", "-r", "$fps", "-f", "gif", "-y", "$out") }
-        'MKV' { $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "-y", "$out") }
-        'MP3' { $ffmpegArgs = @("-i", "$in", "-vn", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
-        'WEBM' { $ffmpegArgs = @("-i", "$in", "-c:v", "libvpx-vp9", "-b:v", "2M", "-vf", "scale=-2:$res", "-c:a", "libopus", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
+    switch ($format.ToLower()) {
+        'gif' { $ffmpegArgs = @("-i", "$in", "-vf", "scale=-2:$res", "-r", "$fps", "-f", "gif", "-y", "$out") }
+        'mkv' { $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "-y", "$out") }
+        'mp3' { $ffmpegArgs = @("-i", "$in", "-vn", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
+        'webm' { $ffmpegArgs = @("-i", "$in", "-c:v", "libvpx-vp9", "-b:v", "2M", "-vf", "scale=-2:$res", "-c:a", "libopus", "-b:a", "128k", "-bufsize", "8M", "-y", "$out") }
         default { $ffmpegArgs = @("-i", "$in", "-c:v", "libx265", "-preset", "faster", "-crf", "28", "-threads", "2", "-vf", "scale=-2:$res", "-c:a", "aac", "-b:a", "128k", "-bufsize", "8M", "-x265-params", "ref=5", "-y", "$out") }
     }
 
