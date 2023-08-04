@@ -20,6 +20,7 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
+New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
 
 ### Custom Functions ###
 # Git add, commit, push
@@ -55,9 +56,9 @@ function dlyt {
   )
 
   if ($Format -eq "video") {
-    yt-dlp --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --sub-format "srt/best" --sub-lang en --write-sub --embed-subs --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --downloader aria2c --cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt" $args
+    yt-dlp --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --sub-format "srt/best" --sub-lang en --write-sub --embed-subs --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --downloader aria2c $args #--cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt"
   } elseif ($Format -eq "audio") {
-    yt-dlp --format "ba" --extract-audio --audio-format mp3 --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --downloader aria2c --cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt" $args
+    yt-dlp --format "ba" --extract-audio --audio-format mp3 --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --add-metadata --geo-bypass --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --downloader aria2c $args #--cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt"
   } else {
     Write-Error "Invalid format specified. Please specify either 'video' or 'audio'."
   }
@@ -112,6 +113,9 @@ function convert-vid {
         [int]$res = 720,
         [int]$fps = 15
     )
+
+    # Example Usage
+    # convert-vid -in "E:\OneDrive\Videos\video.webm" -format GIF -res 720 -fps 15
 
     if (-not (Test-Path $in)) {
         Write-Error "Input file '$in' not found."
