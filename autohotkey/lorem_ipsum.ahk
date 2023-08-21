@@ -43,6 +43,7 @@ random_paragraph() {
 ::elorem;;:: {
     ; Generate a random sentence
     Send random_sentence()
+    return
 }
 
 ::2elorem;;:: {
@@ -51,6 +52,7 @@ random_paragraph() {
     Loop 2 {
         Send random_sentence() " "
     }
+    return
 }
 
 ::3elorem;;:: {
@@ -59,6 +61,7 @@ random_paragraph() {
     Loop 3 {
         Send random_sentence() " "
     }
+    return
 }
 
 ::4elorem;;:: {
@@ -67,6 +70,7 @@ random_paragraph() {
     Loop 4 {
         Send random_sentence() " "
     }
+    return
 }
 
 /* Generate random paragraphs */
@@ -75,6 +79,7 @@ random_paragraph() {
     ; Generate a random paragraph
 
     Send random_paragraph()
+    return
 }
 
 ::2elorem..:: {
@@ -83,6 +88,7 @@ random_paragraph() {
     Loop 2 {
         Send random_paragraph() "{Enter 2}"
     }
+    return
 }
 
 ::3elorem..:: {
@@ -91,6 +97,7 @@ random_paragraph() {
     Loop 3 {
         Send random_paragraph() "{Enter 2}"
     }
+    return
 }
 
 ::4elorem..:: {
@@ -99,6 +106,7 @@ random_paragraph() {
     Loop 4 {
         Send random_paragraph() "{Enter 2}"
     }
+    return
 }
 
 ; ============================================================================
@@ -146,6 +154,7 @@ random_lnparagraph() {
 ::lorem;;:: {
     ; Generate a random sentence
     Send random_lnsentence()
+    return
 }
 
 ::2lorem;;:: {
@@ -154,6 +163,7 @@ random_lnparagraph() {
     Loop 2 {
         Send random_lnsentence() " "
     }
+    return
 }
 
 ::3lorem;;:: {
@@ -162,6 +172,7 @@ random_lnparagraph() {
     Loop 3 {
         Send random_lnsentence() " "
     }
+    return
 }
 
 ::4lorem;;:: {
@@ -170,6 +181,7 @@ random_lnparagraph() {
     Loop 4 {
         Send random_lnsentence() " "
     }
+    return
 }
 
 /* Generate random paragraphs */
@@ -178,6 +190,7 @@ random_lnparagraph() {
     ; Generate a random paragraph
 
     Send random_lnparagraph()
+    return
 }
 
 ::2lorem..:: {
@@ -186,6 +199,7 @@ random_lnparagraph() {
     Loop 2 {
         Send random_lnparagraph() "{Enter 2}"
     }
+    return
 }
 
 ::3lorem..:: {
@@ -194,6 +208,7 @@ random_lnparagraph() {
     Loop 3 {
         Send random_lnparagraph() "{Enter 2}"
     }
+    return
 }
 
 ::4lorem..:: {
@@ -202,4 +217,5 @@ random_lnparagraph() {
     Loop 4 {
         Send random_lnparagraph() "{Enter 2}"
     }
+    return
 }

@@ -21,6 +21,7 @@
 ::php;;::
 ::p~:: {
     SendInput "₱"
+    return
 }
 
 ::euro;;::€

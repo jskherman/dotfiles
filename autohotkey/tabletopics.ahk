@@ -371,4 +371,5 @@ tt_questions := [
 ::qna;;:: {
     ; Generate a random question for table topics
     Send tt_questions[Random(1, tt_questions.Length)]
+    return
 }
