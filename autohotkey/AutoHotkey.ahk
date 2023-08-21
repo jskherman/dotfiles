@@ -1,12 +1,14 @@
 ﻿#Requires AutoHotkey v2.0
 
-/* Includes */
-; General functions and macros
+; Settings =========================================================
 
-; Specific
+
+; Includes =========================================================
 #include "strings.ahk"
 #include "datetimes.ahk"
+
 #include "markdown.ahk"
+#include "latex.ahk"
 
 #include "lorem_ipsum.ahk"
 #include "tabletopics.ahk"
