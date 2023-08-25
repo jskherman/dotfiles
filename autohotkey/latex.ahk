@@ -2,7 +2,7 @@
 
 ; Settings =========================================================
 
-global latex_mode := true   ; Initialize LaTeX math mode flag variable
+global latex_mode := false   ; Initialize LaTeX math mode flag variable
 
 !F10:: {
     ; Use Alt+F10 to toggle LaTeX math mode on and off
@@ -129,9 +129,4 @@ surround_text(left_delim, right_delim, backtrack) {
 ::xi::\xi
 :c1:zeta::\zeta
 
-
-
-
-
-
-
+#HotIf
