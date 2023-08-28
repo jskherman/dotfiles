@@ -8,7 +8,7 @@
 #include "datetimes.ahk"
 
 #include "markdown.ahk"
-#include "latex.ahk"
+#include "scratchpad/scratchpad.ahk"
 
 #include "lorem_ipsum.ahk"
 #include "tabletopics.ahk"

@@ -4,14 +4,14 @@
 
 global latex_mode := false   ; Initialize LaTeX math mode flag variable
 
-!F10:: {
+^m:: {
     ; Use Alt+F10 to toggle LaTeX math mode on and off
     global latex_mode := !latex_mode
     MsgBox("LaTeX math mode is now " (latex_mode ? "ON" : "OFF"), "AHK Mode", "Iconi")
     return
 }
 
-#HotIf latex_mode
+#HotIf latex_mode and WinActive("MD Scratchpad")
 
 ; Functions =========================================================
 
