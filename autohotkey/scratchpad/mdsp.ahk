@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #Include lib\WebView2.ahk
-#Include latex.ahk
+#Include "math_snippets.ahk"
 
 !F10:: {
     main := Gui(, "MD Scratchpad")
