@@ -13,6 +13,8 @@
 #include "lorem_ipsum.ahk"
 #include "tabletopics.ahk"
 
+#include "python_scripts.ahk"
+
 ; Private includes
 #include "private/personal_info.ahk"
 #include "private/hp.ahk"
