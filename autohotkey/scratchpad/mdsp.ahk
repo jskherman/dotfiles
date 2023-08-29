@@ -1,17 +1,26 @@
-/*****************************************************************************
- * @description A temporary popup window for editing markdown and previewing it.
- * @file mdsp.ahk
- * @author jskherman
- * @date 2023-08-29
- * @version 1.0.0
- ****************************************************************************/
+; ===========================================================================
+; @description A temporary popup window for editing markdown and previewing it.
+; @file mdsp.ahk
+; @author jskherman
+; @date 2023-08-29
+; @version 1.0.0
+; ============================================================================
 
 #Requires AutoHotkey v2.0
 #Include lib\WebView2.ahk
 #Include "math_snippets.ahk"
 
-; Set to true if you want to copy the content in the editor to clipboard every time the window is closed
-copy_to_clipboard := False 
+; ============================================================================
+; Variables
+; ============================================================================
+
+; Set to true if you want to copy the content in the editor to somewhere else
+; every time the window is closed
+append_to_data := True
+
+; ============================================================================
+; Popup window
+; ============================================================================
 
 !F10:: {
     main := Gui(, "MD Scratchpad")
@@ -43,10 +52,12 @@ copy_to_clipboard := False
                 out.innerHTML = md.render(textcontent);
             });
             )'
-        wv.CoreWebView2.Navigate(html_preview)
+    wv.CoreWebView2.Navigate(html_preview)
         wv.CoreWebView2.ExecuteScript(script_content, 0)
         wv.CoreWebView2.ExecuteScript(render_script, 0)
     }
+
+    #Include "daily_note.ahk"
 
     ClipcopyContent(*) {
         A_Clipboard := TextContent.Value
@@ -55,7 +66,8 @@ copy_to_clipboard := False
     updatePreview()
     TextContent.onEvent("Change", updatePreview)
 
-    if copy_to_clipboard {
-        main.onEvent("Close", ClipcopyContent)
+    if append_to_data {
+        main.onEvent("Close", write_log_entry)
+        ; main.onEvent("Close", ClipcopyContent)
     }
 }
