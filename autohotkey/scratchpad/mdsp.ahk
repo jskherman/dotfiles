@@ -1,3 +1,11 @@
+/************************************************************************
+ * @description A temporary popup window for editing markdown and previewing it.
+ * @file mdsp.ahk
+ * @author jskherman
+ * @date 2023-08-29
+ * @version 1.0.0
+ ***********************************************************************/
+
 #Requires AutoHotkey v2.0
 #Include lib\WebView2.ahk
 #Include "math_snippets.ahk"
@@ -5,7 +13,7 @@
 !F10:: {
     main := Gui(, "MD Scratchpad")
     editor := main.Add("GroupBox", "h610 w400", "Editor")
-    TextContent := main.Add("edit", "xp+5 yp+20 h580 w390", "Euler's identity $e^{i\pi}+1=0$ is a beautiful formula.")
+    TextContent := main.Add("edit", "xp+5 yp+20 h580 w390", "Press <kbd>Ctrl</kbd> + <kbd>M</kbd>  to toggle ``Math Mode`` and use $\LaTeX$ hotstrings and hotkeys.")
     plh := main.Add("text", "x+20 h580 w580")
     main.Show("w1020 h620")
     wv := WebView2.create(plh.Hwnd)
@@ -13,7 +21,9 @@
     ; wv.CoreWebView2.Navigate(html_preview)
 
     updatePreview(*) {
-        script_content := "var textcontent = ``" StrReplace(TextContent.Value, "\", "\\") "``"
+        content := StrReplace(TextContent.Value, "\", "\\")
+        content := StrReplace(content, "``", "\``")
+        script_content := "var textcontent = ``" content "``"
         render_script := '
         (
             document.addEventListener("DOMContentLoaded", () => {
