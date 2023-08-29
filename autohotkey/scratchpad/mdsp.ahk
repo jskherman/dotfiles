@@ -1,14 +1,17 @@
-/************************************************************************
+/*****************************************************************************
  * @description A temporary popup window for editing markdown and previewing it.
  * @file mdsp.ahk
  * @author jskherman
  * @date 2023-08-29
  * @version 1.0.0
- ***********************************************************************/
+ ****************************************************************************/
 
 #Requires AutoHotkey v2.0
 #Include lib\WebView2.ahk
 #Include "math_snippets.ahk"
+
+; Set to true if you want to copy the content in the editor to clipboard every time the window is closed
+copy_to_clipboard := False 
 
 !F10:: {
     main := Gui(, "MD Scratchpad")
@@ -18,7 +21,6 @@
     main.Show("w1020 h620")
     wv := WebView2.create(plh.Hwnd)
     html_preview := 'file:///' A_LineFile '\..\markdown.html'
-    ; wv.CoreWebView2.Navigate(html_preview)
 
     updatePreview(*) {
         content := StrReplace(TextContent.Value, "\", "\\")
@@ -41,6 +43,14 @@
         wv.CoreWebView2.ExecuteScript(render_script, 0)
     }
 
+    ClipcopyContent(*) {
+        A_Clipboard := TextContent.Value
+    }
+
     updatePreview()
     TextContent.onEvent("Change", updatePreview)
+
+    if copy_to_clipboard {
+        main.onEvent("Close", ClipcopyContent)
+    }
 }
