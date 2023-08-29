@@ -5,6 +5,7 @@
  * @date 2022/01/16
  * @version 1.0.26
  * @webview2version 1.0.1072.54
+ * @url https://www.the-automator.com/downloads/webview2-example-files-display-modern-websites-with-autohotkey-v2/
  ***********************************************************************/
 
 #Include 'ComVar.ahk'
