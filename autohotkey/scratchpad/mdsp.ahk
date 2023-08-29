@@ -34,7 +34,11 @@ copy_to_clipboard := False
                     .use(texmath, {
                         engine: katex,
                         delimiters: "dollars",
-                        katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
+                        katexOptions: {
+                            macros: {
+                                "\\RR": "\\mathbb{R}"
+                            } 
+                        }
                     });
                 out.innerHTML = md.render(textcontent);
             });
