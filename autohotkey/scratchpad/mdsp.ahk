@@ -16,7 +16,15 @@
 
 ; Set to true if you want to copy the content in the editor to somewhere else
 ; every time the window is closed
-append_to_data := True
+global append_to_data := true
+
+!F11:: {
+    ; Use Alt+F11 to toggle saving to daily note ON/OFF
+    global append_to_data := !append_to_data
+    MsgBox("Saving to DAILY NOTE is now: " (append_to_data ? "ON" : "OFF"), "AHK Mode", "Iconi")
+    return
+}
+
 
 ; ============================================================================
 ; Popup window
