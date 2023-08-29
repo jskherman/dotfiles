@@ -1,7 +1,7 @@
 # README
 
 This folder contains the files needed to run `mdsp.ahk` which is an AutoHotKey script
-which creates a GUI for a scratchpad that supports previewing the text in Markdown (and math equations via [KaTeX](https://katex.org/)).
+which creates a GUI for a scratchpad that supports previewing text in Markdown (and math equations via [KaTeX](https://katex.org/)).
 
 ## Requirements
 
