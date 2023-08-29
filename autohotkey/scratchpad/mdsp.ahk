@@ -16,7 +16,8 @@ copy_to_clipboard := False
 !F10:: {
     main := Gui(, "MD Scratchpad")
     editor := main.Add("GroupBox", "h610 w400", "Editor")
-    TextContent := main.Add("edit", "xp+5 yp+20 h580 w390", "Press <kbd>Ctrl</kbd> + <kbd>M</kbd>  to toggle ``Math Mode`` and use $\LaTeX$ hotstrings and hotkeys.")
+    initial_text := "Press <kbd>Ctrl</kbd> + <kbd>M</kbd>  to toggle ``Math Mode`` and use $\LaTeX$ hotstrings and hotkeys. See <a href='https://github.com/goessner/markdown-it-texmath' target='_blank'>markdown-it-texmath</a>."
+    TextContent := main.Add("edit", "xp+5 yp+20 h580 w390", initial_text)
     plh := main.Add("text", "x+20 h580 w580")
     main.Show("w1020 h620")
     wv := WebView2.create(plh.Hwnd)
