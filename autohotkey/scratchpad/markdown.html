@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <!-- External resources -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
     <!-- <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js" crossorigin="anonymous"></script> -->
@@ -18,6 +18,29 @@
     <script src="./js/mhchem.min.js"></script>
     <link rel="stylesheet" href="./css/texmath.min.css">
     <script src="./js/texmath.min.js"></script>
+    <style>
+        body {
+            font-family: "Latin Modern Roman 12", "Source Serif Pro", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        }
+
+        kbd,
+        code {
+            font-family: "Latin Modern Mono 12", "Cascadia Code", "JetBrains Mono", "Fira Code", "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            padding: 1px 4px;
+
+        }
+
+        code {
+            background-color: rgb(219, 219, 219);
+        }
+
+        kbd {
+            background-color: rgb(90, 90, 90);
+            color: white;
+        }
+    </style>
     <title>Scratchpad</title>
 </head>
 
@@ -37,7 +60,7 @@ $$i \\hbar \\frac{\\partial}{\\partial t} \\Psi(x, t)=\\left[-\\frac{\\hbar^{2}}
             const md = markdownit({ html: true })
                 .use(texmath, {
                     engine: katex,
-                    delimiters: 'dollars',
+                    delimiters: "dollars",
                     katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
                 });
             out.innerHTML = md.render(textcontent);
