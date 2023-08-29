@@ -4,6 +4,7 @@
 
 global latex_mode := false   ; Initialize LaTeX math mode flag variable
 
+#HotIf WinActive("MD Scratchpad")
 ^m:: {
     ; Use Alt+F10 to toggle LaTeX math mode on and off
     global latex_mode := !latex_mode
@@ -44,7 +45,7 @@ surround_text(left_delim, right_delim, backtrack) {
 }
 ::beg;:: {
     ; Surround with \begin{} and \end{} environment
-    Send surround_text("\begin{{}{}}{Enter}", "{Enter}\end{{}{}}", 1)   
+    Send surround_text("\begin{{}{}}{Enter}", "{Enter}\end{{}{}}", 1)
 }
 
 ; Snippets =========================================================
