@@ -15,6 +15,9 @@ Download the whole `scratchpad` folder and just invoke `#Include scratchpad/mdsp
 
 - `Alt` + `F10` to show the scratchpad.
 - `Alt` + `F4` to close the scratchpad.
-- `Ctrl` + `M` to toggle math mode and enable hotstrings/hotkeys for editing math equations.
+- `Ctrl` + `M` to toggle math mode and enable hotstrings/hotkeys for editing math equations.[^2]
+
+![Demo of scratchpad window](https://github.com/jskherman/dotfiles/assets/68434444/d990092d-47d2-4035-8513-123a776f2e0c)
 
 [^1]: Already installed if you have Microsoft Office 365.<br> Source: [the-automator](https://www.the-automator.com/downloads/webview2-example-files-display-modern-websites-with-autohotkey-v2/) and [YouTube video](https://www.youtube.com/watch?v=ErvDqabKjfw&t=3m17s).
+[^2]: Still incomplete and a work-in-progress.
