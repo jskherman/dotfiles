@@ -1,5 +1,6 @@
 ### Powershell Theme ###
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\takuya.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\clean-detailed.omp.json" | Invoke-Expression
+# half-life, cert, emodipt-extend, clean-detailed, free-ukraine, hul10, takuya, material, slim
 
 ### Import the Chocolatey Profile ###
 # This contains the necessary code to enable tab-completions to function for `choco`.
