@@ -1,6 +1,7 @@
 # Private folders
 .vscode
 private/
+*.exe
 
 # Packages
 packages/
