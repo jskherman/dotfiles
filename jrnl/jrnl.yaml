@@ -1,0 +1,21 @@
+colors:
+  body: none
+  date: GREEN
+  tags: CYAN
+  title: RED
+default_hour: 8
+default_minute: 0
+editor: nvim
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default:
+    encrypt: true
+    journal: E:\OneDrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2
+      JN) JRNL\journal.txt
+linewrap: 79
+tagsymbols: '#@'
+template: false
+timeformat: '%Y-%m-%d %H:%M:%S'
+version: v3.3
