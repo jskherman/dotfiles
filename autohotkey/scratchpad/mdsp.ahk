@@ -79,3 +79,5 @@ global append_to_data := true
         ; main.onEvent("Close", ClipcopyContent)
     }
 }
+
+#HotIf
