@@ -8,7 +8,6 @@
 #include "datetimes.ahk"
 
 #include "markdown.ahk"
-#include "scratchpad/mdsp.ahk"
 
 #include "lorem_ipsum.ahk"
 #include "tabletopics.ahk"
@@ -18,3 +17,6 @@
 ; Private includes
 #include "private/personal_info.ahk"
 #include "private/hp.ahk"
+
+; Complex scripts
+#include "scratchpad/mdsp.ahk"
