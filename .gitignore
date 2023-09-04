@@ -5,3 +5,6 @@ private/
 
 # Packages
 packages/
+
+# Backups
+nvim.7z
