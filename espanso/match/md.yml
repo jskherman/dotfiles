@@ -1,7 +1,7 @@
 # Markdown and Obsidian.md specific snippets
 
 matches:
-  - triggers: [";adm", ";callout", "admÆ"]
+  - triggers: [";adm", ";callout"]
     form: |
       > [![[admtype]]]+ [[title]]
       >
@@ -11,12 +11,21 @@ matches:
         type: list
         values:
           - "note"
-          - "tip"
-          - "warning"
-          - "caution"
+          - "abstract"
+          - "info"
           - "important"
+          - "success"
+          - "question"
+          - "warning"
+          - "failure"
+          - "error"
+          - "bug"
+          - "example"
+          - "quote"
 
   # Highlights
+  - triggers: ["fn;;"]
+    replace: "<!--- fn --->"
   - triggers: [";==1"]
     replace: "*==$|$==*"
   - triggers: [";==2"]
