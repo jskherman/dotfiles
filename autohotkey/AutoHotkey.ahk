@@ -4,6 +4,7 @@
 
 
 ; Includes =========================================================
+#include "hotkeys.ahk"
 #include "strings.ahk"
 #include "datetimes.ahk"
 
