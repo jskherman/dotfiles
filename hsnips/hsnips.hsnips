@@ -1,0 +1,5 @@
+snippet hsnip "Create a new snippet"
+``rv = "snippet"`` $1 "$2"
+$0
+``rv = "endsnippet"``
+endsnippet

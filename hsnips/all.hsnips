@@ -1,0 +1,29 @@
+# A snippet to insert a box around the current selection
+snippet box "Box" A
+``rv = '┌' + '─'.repeat(t[0].length + 2) + '┐'``
+│ $1 │
+``rv = '└' + '─'.repeat(t[0].length + 2) + '┘'``
+$0
+endsnippet
+
+# A snippet to insert a signature
+snippet sign "Writes signature"
+Best regards,
+
+Je Sian Keith Herman
+endsnippet
+
+# A snippet to insert the current date in the format YYYY-MM-DD
+snippet today "Today's date as YYYY-MM-DD" 
+``rv = new Date().toISOString().slice(0, 10); ``
+endsnippet
+
+# A snippet to get the current document's filename
+snippet filename "Get the current document's filename"
+``rv = require('path').basename(path)``
+endsnippet
+
+# A snippet to get the current document's full path
+snippet filepath "Get the current document's full path"
+``rv = path.replace(/%3A/g, ':').replace(/%20/g, ' ').replace(/(file:\/\/\/)/g, '')``
+endsnippet
