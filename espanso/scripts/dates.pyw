@@ -9,6 +9,13 @@ def calc_days_lived():
     print(delta.days)
 
 
+def calc_days_left():
+    d0 = date.today()
+    d1 = date(2023, 11, 25)
+    delta = d1 - d0
+    print(delta.days)
+
+
 def ordinal_day():
     day = int(datetime.now().strftime("%d"))
     if 4 <= day <= 20 or 24 <= day <= 30:

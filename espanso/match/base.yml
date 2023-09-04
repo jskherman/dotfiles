@@ -21,6 +21,13 @@ global_vars:
         - python
         - "%CONFIG%\\scripts\\dates.pyw"
         - calc_days_lived
+  - name: days_left
+    type: script
+    params:
+      args:
+        - python
+        - "%CONFIG%\\scripts\\dates.pyw"
+        - calc_days_left
   - name: ordinal_day
     type: script
     params:
