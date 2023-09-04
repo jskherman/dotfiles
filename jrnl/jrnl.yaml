@@ -13,7 +13,15 @@ journals:
   default:
     encrypt: true
     journal: E:\OneDrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2
+      JN) JRNL\rev.txt
+  p:
+    encrypt: true
+    journal: E:\OneDrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2
       JN) JRNL\journal.txt
+  work:
+    encrypt: true
+    journal: E:\OneDrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2
+      JN) JRNL\work.txt
 linewrap: 79
 tagsymbols: '#@'
 template: false
