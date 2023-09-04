@@ -49,6 +49,8 @@ function Set-LocationKeyword {
     )
 
     switch ($Keyword) {
+        'dotf' { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
+        'dotfiles' { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
         'dl'   { Set-Location $ENV:USERPROFILE\Downloads }
         'desk' { Set-Location $ENV:onedrive\Desktop }
         'desktop' { Set-Location $ENV:onedrive\Desktop }
