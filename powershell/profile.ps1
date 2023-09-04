@@ -40,6 +40,30 @@ function conwebp {
     python "E:\OneDrive\Documents\Workspace\dotfiles\powershell\cwebp.py"
 }
 
+# change directory Alias
+function Set-LocationKeyword {
+    param (
+        [string]$Keyword
+    )
+
+    switch ($Keyword) {
+        'dl'   { Set-Location $ENV:USERPROFILE\Downloads }
+        'desk' { Set-Location $ENV:onedrive\Desktop }
+        'desktop' { Set-Location $ENV:onedrive\Desktop }
+        'pics' { Set-Location $ENV:onedrive\Pictures }
+        'docs' { Set-Location $ENV:onedrive\Documents }
+        'vids' { Set-Location $ENV:onedrive\Videos }
+        'basecamp'  { Set-Location $ENV:onedrive\Documents\Basecamp }
+        'archive' { Set-Location $ENV:onedrive\Documents\Archive }
+        'notes' { Set-Location "$ENV:onedrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2 KN) Knowledge" }
+        default { Set-Location $Keyword }
+    }
+}
+
+# Create an alias for 'cd' to use our custom function
+Set-Alias -Name nav -Value Set-LocationKeyword -Option AllScope
+
+
 # Find files from OneDrive sync conflicts
 function findconflicts {
   param (
