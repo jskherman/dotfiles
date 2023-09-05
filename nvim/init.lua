@@ -1,11 +1,17 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
--- Set default shell for terminal to powershell
-vim.o.shell = "pwsh"
-vim.o.shellcmdflag = "-Command"
-vim.o.shellquote = "\""
-vim.o.shellxquote = ""
+-- mason.nvim config
+require("mason").setup()
+require("mason-lspconfig").setup()
 
--- Set path to python3 executable for neovim
-vim.g.python3_host_prog = "C:\\Users\\Je Sian Keith Herman\\.pyenv\\pyenv-win\\versions\\3.10.11\\python.exe"
+-- nvim-lspconfig
+require("lspconfig").typst_lsp.setup{
+    cmd = { "typst-lsp" },
+    filetypes = { "typst" },
+    settings = {
+		exportPdf = "onType", -- Choose onType, onSave or never.
+        -- serverPath = "" -- Normally, there is no need to uncomment it.
+	}
+}
+
