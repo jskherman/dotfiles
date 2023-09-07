@@ -49,17 +49,18 @@ function Set-LocationKeyword {
     )
 
     switch ($Keyword) {
-        'dotf' { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
-        'dotfiles' { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
-        'dl'   { Set-Location $ENV:USERPROFILE\Downloads }
-        'desk' { Set-Location $ENV:onedrive\Desktop }
-        'desktop' { Set-Location $ENV:onedrive\Desktop }
-        'pics' { Set-Location $ENV:onedrive\Pictures }
-        'docs' { Set-Location $ENV:onedrive\Documents }
-        'vids' { Set-Location $ENV:onedrive\Videos }
-        'basecamp'  { Set-Location $ENV:onedrive\Documents\Basecamp }
-        'archive' { Set-Location $ENV:onedrive\Documents\Archive }
-        'notes' { Set-Location "$ENV:onedrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2 KN) Knowledge" }
+        "dotf" { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
+        "dotfiles" { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
+        "dl"   { Set-Location "$ENV:USERPROFILE\Downloads" }
+        "desk" { Set-Location "$ENV:onedrive\Desktop" }
+        "desktop" { Set-Location "$ENV:onedrive\Desktop" }
+        "pics" { Set-Location "$ENV:onedrive\Pictures" }
+        "docs" { Set-Location "$ENV:onedrive\Documents" }
+        "vids" { Set-Location "$ENV:onedrive\Videos" }
+        "basecamp"  { Set-Location "$ENV:onedrive\Documents\Basecamp" }
+        "archive" { Set-Location "$ENV:onedrive\Documents\Archive" }
+        "notes" { Set-Location "$ENV:onedrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2 KN) Knowledge" }
+        "typn" { Set-Location "E:\code\typnotes" }
         default { Set-Location $Keyword }
     }
 }
