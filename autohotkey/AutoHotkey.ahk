@@ -2,8 +2,11 @@
 
 ; Settings =========================================================
 
+GroupAdd "Snippets", "ahk_exe WindowsTerminal.exe"
 
 ; Includes =========================================================
+
+#HotIf !WinActive("ahk_group Snippets")
 #include "hotkeys.ahk"
 #include "strings.ahk"
 #include "datetimes.ahk"
