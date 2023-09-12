@@ -59,8 +59,7 @@ function Set-LocationKeyword {
         "vids" { Set-Location "$ENV:onedrive\Videos" }
         "basecamp"  { Set-Location "$ENV:onedrive\Documents\Basecamp" }
         "archive" { Set-Location "$ENV:onedrive\Documents\Archive" }
-        "notes" { Set-Location "$ENV:onedrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2 KN) Knowledge" }
-        "typn" { Set-Location "E:\code\typnotes" }
+        "notes" { Set-Location "$ENV:onedrive\z" }
         default { Set-Location $Keyword }
     }
 }
