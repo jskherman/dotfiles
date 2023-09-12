@@ -44,24 +44,76 @@ opt.undolevels = 10000
 opt.updatetime = 200               -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
-opt.wrap = true                    -- Enable/disable line wrap, default: false/disabled
+opt.wrap = false                   -- Enable/disable line wrap, default: false/disabled
 
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+-- Set local leader to comma, default is \ backslash
+vim.g.maplocalleader = ","
 
+------------------------------------------------------------------------------
 -- Set default shell for terminal to powershell
+------------------------------------------------------------------------------
+
 vim.o.shell = "pwsh"
 vim.o.shellcmdflag = "-Command"
 vim.o.shellquote = ""
 vim.o.shellxquote = ""
 
+
+------------------------------------------------------------------------------
+-- Language specific options
+------------------------------------------------------------------------------
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
 -- Set path to python3 executable for neovim
 vim.g.python3_host_prog = "C:\\Users\\Je Sian Keith Herman\\.pyenv\\pyenv-win\\versions\\3.10.11\\python.exe"
 
+------------------------------------------------------------------------------
 -- UltiSnips config
+------------------------------------------------------------------------------
+
 vim.g.UltiSnipsExpandTrigger = '<tab>'
 -- shortcut to go to next position
 vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
 -- shortcut to go to previous position
 vim.g.UltiSnipsJumpBackwardTrigger = '<c-k>'
--- vim.g.UltiSnipsSnippetDirectories = []
+-- vim.g.UltiSnipsSnippetDirectories = { "C:\\Users\\Je Sian Keith Herman\\AppData\\Local\\nvim\\UltiSnips" }
+
+------------------------------------------------------------------------------
+-- VimTex config options
+------------------------------------------------------------------------------
+
+-- latexmk compiler options
+-- vim.g.vimtex_compiler_latexmk = 'pdflatex' -- or 'pdflatex', 'luatex', 'context (luatex)'
+
+vim.g.vimtex_quickfix_ignore_filters = {
+    'Underfull \\hbox',
+    'Overfull \\hbox',
+    'LaTeX Warning: .+ float specifier changed to',
+    'LaTeX hooks Warning',
+    'Package siunitx Warning: Detected the "physics" package:',
+    'Package hyperref Warning: Token not allowed in a PDF string',
+} -- Ignore these warnings, or you can uncomment the setting below to open QuickFix for errors only
+-- vim.g.vimtex_quickfix_open_on_warning = 0 -- Don't open QuickFix for warning messages if no errors are present
+
+-- Set PDF viewer to SumatraPDF
+vim.g.vimtex_view_general_viewer = 'SumatraPDF'
+vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+
+-- Conceal syntax options, see :h g:vimtex_syntax_conceal
+vim.g.vimtex_syntax_conceal = {
+    accents = 1,
+    ligatures = 1,
+    cites = 1,
+    fancy = 1,
+    spacing = 1,
+    greek = 0,
+    math_bounds = 0,
+    math_delimiters = 0,
+    math_fracs = 0,
+    math_super_sub = 0,
+    math_symbols = 0,
+    sections = 0,
+    styles = 1,
+}
