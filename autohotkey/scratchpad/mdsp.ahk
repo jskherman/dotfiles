@@ -18,14 +18,6 @@
 ; every time the window is closed
 global append_to_data := true
 
-!F11:: {
-    ; Use Alt+F11 to toggle saving to daily note ON/OFF
-    global append_to_data := !append_to_data
-    MsgBox("Saving to DAILY NOTE is now: " (append_to_data ? "ON" : "OFF"), "AHK Mode", "Iconi")
-    return
-}
-
-
 ; ============================================================================
 ; Popup window
 ; ============================================================================
@@ -61,8 +53,8 @@ global append_to_data := true
             });
             )'
     wv.CoreWebView2.Navigate(html_preview)
-        wv.CoreWebView2.ExecuteScript(script_content, 0)
-        wv.CoreWebView2.ExecuteScript(render_script, 0)
+    wv.CoreWebView2.ExecuteScript(script_content, 0)
+    wv.CoreWebView2.ExecuteScript(render_script, 0)
     }
 
     #Include "daily_note.ahk"
@@ -80,4 +72,13 @@ global append_to_data := true
     }
 }
 
+#HotIf WinActive("MD Scratchpad")
+!F11:: {
+    ; Use Alt+F11 to toggle saving to daily note ON/OFF
+    global append_to_data := !append_to_data
+    MsgBox("Saving to DAILY NOTE is now: " (append_to_data ? "ON" : "OFF"), "AHK Mode", "Iconi")
+    return
+}
+
+!F9::!F4
 #HotIf
