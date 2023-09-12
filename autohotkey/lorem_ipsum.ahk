@@ -31,9 +31,9 @@ random_paragraph() {
 
     par := ""
 
-    Loop Random(2,5) {
+    Loop Random(2, 5) {
         par := par random_sentence() " "
-    } 
+    }
 
     return par
 }
@@ -42,7 +42,7 @@ random_paragraph() {
 
 ::elorem;;:: {
     ; Generate a random sentence
-    Send random_sentence()
+    SendText random_sentence()
     return
 }
 
@@ -50,7 +50,7 @@ random_paragraph() {
     ; Generate 2 random sentences
 
     Loop 2 {
-        Send random_sentence() " "
+        SendText random_sentence() " "
     }
     return
 }
@@ -59,7 +59,7 @@ random_paragraph() {
     ; Generate 3 random sentences
 
     Loop 3 {
-        Send random_sentence() " "
+        SendText random_sentence() " "
     }
     return
 }
@@ -68,7 +68,7 @@ random_paragraph() {
     ; Generate 4 random sentences
 
     Loop 4 {
-        Send random_sentence() " "
+        SendText random_sentence() " "
     }
     return
 }
@@ -78,7 +78,7 @@ random_paragraph() {
 ::elorem..:: {
     ; Generate a random paragraph
 
-    Send random_paragraph()
+    SendText random_paragraph()
     return
 }
 
@@ -86,7 +86,7 @@ random_paragraph() {
     ; Generate 2 random paragraphs
 
     Loop 2 {
-        Send random_paragraph() "{Enter 2}"
+        SendText random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -95,7 +95,7 @@ random_paragraph() {
     ; Generate 3 random paragraphs
 
     Loop 3 {
-        Send random_paragraph() "{Enter 2}"
+        SendText random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -104,7 +104,7 @@ random_paragraph() {
     ; Generate 4 random paragraphs
 
     Loop 4 {
-        Send random_paragraph() "{Enter 2}"
+        SendText random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -142,9 +142,9 @@ random_lnparagraph() {
 
     par := ""
 
-    Loop Random(3,7) {
+    Loop Random(3, 7) {
         par := par random_lnsentence() " "
-    } 
+    }
 
     return par
 }
@@ -153,7 +153,7 @@ random_lnparagraph() {
 
 ::lorem;;:: {
     ; Generate a random sentence
-    Send random_lnsentence()
+    SendText random_lnsentence()
     return
 }
 
@@ -161,7 +161,7 @@ random_lnparagraph() {
     ; Generate 2 random sentences
 
     Loop 2 {
-        Send random_lnsentence() " "
+        SendText random_lnsentence() " "
     }
     return
 }
@@ -170,7 +170,7 @@ random_lnparagraph() {
     ; Generate 3 random sentences
 
     Loop 3 {
-        Send random_lnsentence() " "
+        SendText random_lnsentence() " "
     }
     return
 }
@@ -179,7 +179,7 @@ random_lnparagraph() {
     ; Generate 4 random sentences
 
     Loop 4 {
-        Send random_lnsentence() " "
+        SendText random_lnsentence() " "
     }
     return
 }
@@ -189,7 +189,7 @@ random_lnparagraph() {
 ::lorem..:: {
     ; Generate a random paragraph
 
-    Send random_lnparagraph()
+    SendText random_lnparagraph()
     return
 }
 
@@ -197,7 +197,7 @@ random_lnparagraph() {
     ; Generate 2 random paragraphs
 
     Loop 2 {
-        Send random_lnparagraph() "{Enter 2}"
+        SendText random_lnparagraph() "{Enter 2}"
     }
     return
 }
@@ -206,7 +206,7 @@ random_lnparagraph() {
     ; Generate 3 random paragraphs
 
     Loop 3 {
-        Send random_lnparagraph() "{Enter 2}"
+        SendText random_lnparagraph() "{Enter 2}"
     }
     return
 }
@@ -215,7 +215,7 @@ random_lnparagraph() {
     ; Generate 4 random paragraphs
 
     Loop 4 {
-        Send random_lnparagraph() "{Enter 2}"
+        SendText random_lnparagraph() "{Enter 2}"
     }
     return
 }
