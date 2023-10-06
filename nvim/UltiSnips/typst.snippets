@@ -1,0 +1,375 @@
+global !p
+def math():
+	return vim.eval('typst#in_mode("math")')
+endglobal
+
+snippet pac "Package" b
+#import "@preview/${1:package}:${2:ver}": $0
+endsnippet
+
+# ==== TEXT snippets ====
+
+snippet table "Table figure" b
+#figure(
+  table(
+    columns: (${3:c}),
+    align: (${4:auto}),
+    $0
+  ),
+  caption: [${1:caption}],
+) <tbl-${2:label}>
+endsnippet
+
+snippet fig "Image figure" b
+#figure(
+  image("$0", width: ${3:auto}, height: ${4:auto}),
+  caption: [${1:caption}],
+) <fig-${2:label}>
+endsnippet
+
+snippet codefig "Code figure" b
+#figure(
+  caption: [${1:caption}],
+)[
+```${3:lang}
+$0
+```
+] <code-${2:label}>
+endsnippet
+
+snippet terml "Term list" bA
+/ ${1:Term}: ${0:description}
+endsnippet
+
+priority 100
+snippet ... "ldots" iA
+#sym.dots.h
+endsnippet
+
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wA
+$ ${1:${VISUAL}} $ $0
+endsnippet
+
+# ==== MATH snippets ====
+
+context "math()"
+snippet // "Fraction" iA
+($1)/($2)$0
+endsnippet
+
+snippet / "Fraction" i
+(${VISUAL})/($1)$0
+endsnippet
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+(`!p snip.rv = match.group(1)`)/$1$0
+endsnippet
+
+# priority 1000
+# context "math()"
+# snippet '^.*\)/' "() frac" wrA
+# `!p
+# stripped = match.string[:-1]
+# depth = 0
+# i = len(stripped) - 1
+# while True:
+# 	if stripped[i] == ')': depth += 1
+# 	if stripped[i] == '(': depth -= 1
+# 	if depth == 0: break;
+# 	i-=1
+# snip.rv = stripped[0:i] + "(" + stripped[i+1:-1] + ")/"
+# `$1$0
+# endsnippet
+
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_(`!p snip.rv = match.group(2)`)
+endsnippet
+
+context "math()"
+snippet == "equals" iA
+&= $1 \\
+endsnippet
+
+context "math()"
+snippet ceil "ceil" iA
+ceil($1) $0
+endsnippet
+
+context "math()"
+snippet floor "floor" iA
+floor($1) $0
+endsnippet
+
+context "math()"
+snippet round "round" iA
+round($1) $0
+endsnippet
+
+context "math()"
+snippet norm "norm" iA
+norm($1) $0
+endsnippet
+
+context "math()"
+snippet abs "abs" iA
+abs($1) $0
+endsnippet
+
+context "math()"
+snippet pmat "pmat" iA
+mat(delim: "(", $1) $0
+endsnippet
+
+context "math()"
+snippet bmat "bmat" iA
+mat(delim: "[", $1) $0
+endsnippet
+
+context "math()"
+snippet lr "left( right)" i
+lr( ${1:${VISUAL}} ) $0
+endsnippet
+
+context "math()"
+snippet lr( "left( right)" i
+lr(( ${1:${VISUAL}} )) $0
+endsnippet
+
+context "math()"
+snippet lr| "left( right)" i
+lr(abs( ${1:${VISUAL}} )) $0
+endsnippet
+
+context "math()"
+snippet lr{ "left( right)" i
+lr({ ${1:${VISUAL}} }) $0
+endsnippet
+
+context "math()"
+snippet lrb "left( right)" i
+lr({ ${1:${VISUAL}} }) $0
+endsnippet
+
+context "math()"
+snippet lr[ "left( right)" i
+lr([ ${1:${VISUAL}} ]) $0
+endsnippet
+
+context "math()"
+snippet lra "leftangle rightangle" iA
+lr(angle.l ${1:${VISUAL}} angle.r) $0
+endsnippet
+
+context "math()"
+snippet conj "conjugate" iA
+overline($1)$0
+endsnippet
+
+context "math()"
+snippet sum "sum" w
+sum_(n=${1:1})^(${2:infinity}) ${3:a_n z^n}
+endsnippet
+
+context "math()"
+snippet taylor "taylor" w
+sum_(${1:k}=${2:0})^(${3:infinity}) ${4:c_$1} (x-a)^$1 $0
+endsnippet
+
+context "math()"
+snippet lim "limit" w
+lim_(${1:n} -> ${2:infinity}) 
+endsnippet
+
+context "math()"
+snippet prod "product" w
+product_(${1:n=${2:1}})^(${3:infinity}) ${4:${VISUAL}} $0
+endsnippet
+ 
+context "math()"
+snippet part "d/dx" w
+(diff ${1})/(diff ${2:x}) $0
+endsnippet
+
+context "math()"
+snippet sq "sqrt()" iA
+sqrt(${1:${VISUAL}}) $0
+endsnippet
+
+context "math()"
+snippet sr "^2" iA
+^2
+endsnippet
+
+context "math()"
+snippet cb "^3" iA
+^3
+endsnippet
+
+context "math()"
+snippet td "to the ... power" iA
+^($1)$0
+endsnippet
+
+context "math()"
+snippet rd "to the ... power" iA
+^($1)$0
+endsnippet
+
+context "math()"
+snippet __ "subscript" iA
+_($1)$0
+endsnippet
+
+context "math()"
+snippet xnn "xn" iA
+x_(n)
+endsnippet
+
+context "math()"
+snippet ynn "yn" iA
+y_(n)
+endsnippet
+
+context "math()"
+snippet xii "xi" iA
+x_(i)
+endsnippet
+
+context "math()"
+snippet yii "yi" iA
+y_(i)
+endsnippet
+
+context "math()"
+snippet xjj "xj" iA
+x_(j)
+endsnippet
+
+context "math()"
+snippet yjj "yj" iA
+y_(j)
+endsnippet
+
+context "math()"
+snippet xp1 "x" iA
+x_(n+1)
+endsnippet
+
+context "math()"
+snippet xmm "x" iA
+x_(m)
+endsnippet
+
+context "math()"
+snippet mcal "mathcal" iA
+cal($1)$0
+endsnippet
+
+context "math()"
+snippet nabl "nabla" iA
+nabla 
+endsnippet
+
+context "math()"
+snippet xx "cross product" iA
+times 
+endsnippet
+
+priority 100
+snippet ** "cdot" iA
+dot 
+endsnippet
+
+priority 300
+context "math()"
+snippet dint "integral" wA
+integral_(${1:-infinity})^(${2:infinity}) ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet inv "inverse" iA
+^(-1)
+endsnippet
+
+context "math()"
+snippet compl "complement" iA
+^(complement)
+endsnippet
+
+context "math()"
+snippet notin "not in " iA
+in.not
+endsnippet
+
+context "math()"
+snippet OO "emptyset" iA
+diameter
+endsnippet
+
+context "math()"
+snippet '(?<!i)tss' "text subscript" irA
+_("$1") $0
+endsnippet
+
+context "math()"
+snippet tt "text" iA
+"$1"$0
+endsnippet
+
+context "math()"
+snippet case "cases" wA
+cases(
+    $1
+) $0
+endsnippet
+
+context "math()"
+snippet cvec "column vector" iA
+vec(${1:x}_${2:1}, dots.v, $1_${2:n})
+endsnippet
+
+priority 10
+context "math()"
+snippet "bar" "bar" riA
+overline($1)$0
+endsnippet
+
+priority 200
+context "math()"
+snippet "hbar" "bar" riA
+planck.reduce
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bar" "bar" riA
+overline(`!p snip.rv=match.group(1)`)
+endsnippet
+
+priority 10
+context "math()"
+snippet "hat" "hat" riA
+hat($1)$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])hat" "hat" riA
+hat(`!p snip.rv=match.group(1)`)
+endsnippet
