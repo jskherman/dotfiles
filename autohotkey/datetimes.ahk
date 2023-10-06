@@ -4,7 +4,7 @@
 days_lived := DateDiff(A_Now, 20010529, "D")
 reviewdays_left := DateDiff(20231125, A_Now, "D")
 
-/* The Days */ 
+/* The Days */
 ::day;;:: {
     ; Days lived so far
     SendInput days_lived
@@ -38,7 +38,7 @@ reviewdays_left := DateDiff(20231125, A_Now, "D")
 
 ::ft;;:: {
     ; Current time as `HH:mm`
-    SendInput Format("=={1}==", FormatTime(, "HH:mm"))
+    SendInput ("\code{{}" Format("{1}", FormatTime(, "HH:mm")) "{}}")
     return
 }
 
