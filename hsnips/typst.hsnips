@@ -1,9 +1,9 @@
 # Define contexts for use
 # Use `> Inspect Editor Tokens and Scopes` to find out what context you're in
 global
-function math(context) { return context.scopes.some(s => s.startsWith("meta.embedded.math"));}
+function math(context) { return context.scopes.some(s => s.startsWith("string.other.math"));}
 function comment(context) {return context.scopes.some(s => s.startsWith("comment"));}
-function frontmatter(context) {return context.scopes.some(s => s.startsWith("meta.embedded.block.frontmatter"));}
+function code(context) {return context.scopes.some(s => s.startsWith("meta.block.code"));}
 endglobal
 
 
@@ -52,46 +52,57 @@ var isoString = currentDate.getFullYear() +
 rv = isoString``
 endsnippet
 
+############# REGULAR MODE #############
 
-### MARKUP ###
-snippet ;== "Highlight with <mark>" wA
-<mark class="${1:y}">${0:``rv=visual``}</mark>
+snippet pac "Package" b
+#import "@preview/${1:package}:${2:ver}": $0
 endsnippet
 
-snippet tbl "Table" wA
-| ${0:Header} |      |
-|-------------|------|
-|             |      |
+snippet tbl "Table figure" b
+#figure(
+  table(
+    columns: (${3:c}),
+    align: (${4:auto}),
+    $0
+  ),
+  caption: [${1:caption}],
+) <tbl-${2:label}>
 endsnippet
 
-snippet tb3 "Table" wA
-| ${0:Header} |      |      |
-|-------------|------|------|
-|             |      |      |
+snippet fig "Image figure" b
+#figure(
+  image("$0", width: ${3:auto}, height: ${4:auto}),
+  caption: [${1:caption}],
+) <fig-${2:label}>
+endsnippet
+
+snippet codefig "Code figure" b
+#figure(
+  caption: [${1:caption}],
+)[
+\`\`\`${3:lang}
+$0
+\`\`\`
+] <code-${2:label}>
+endsnippet
+
+snippet terml "Term list" bA
+/ ${1:Term}: ${0:description}
 endsnippet
 
 
-### Misc ###
-snippet latex "LaTeX" wA
-$\LaTeX$
-endsnippet
-
-
-############# MATH #############
+############# MATH MODE #############
 # Ported from https://castel.dev/post/lecture-notes-1/#inline-and-display-math
 # Insert inline math block
-snippet mk "Inline math" wA
-$${1}$${0}
+snippet mk "Inline Math" wA
+$${1:``rv=visual``}$ $0
 endsnippet
+
 
 # Ported from https://castel.dev/post/lecture-notes-1/#inline-and-display-math
 # Insert display math block
 snippet dm "Display Math" wA
-$$
-${1}
-$$
-
-$0
+$ ${1:``rv=visual``} $ $0
 endsnippet
 
 
@@ -103,22 +114,22 @@ endsnippet
 
 context math(context)
 snippet `([A-Za-z])_(\d\d)` "auto subscript2" wA
-``rv = m[1]``_{``rv = m[2]``}
+``rv = m[1]``_(``rv = m[2]``)
 endsnippet
 
 context math(context)
 snippet __ "subscript" iA
-_{$1}$0
+_($1)$0
 endsnippet
 
 context math(context)
-snippet `(?<!i)sts` "text subscript" iA
-_\text{$1} $0
+snippet `(?<!i)tss` "text subscript" iA
+_("$1") $0
 endsnippet
 
 ### Superscripts ###1
 context math(context)
-snippet sq "^2" iA
+snippet sr "^2" iA
 ^2
 endsnippet
 
@@ -129,68 +140,68 @@ endsnippet
 
 context math(context)
 snippet invs "inverse" iA
-^{-1}
+^(-1)
 endsnippet
 
 context math(context)
-snippet sr "\sqrt{}" iA
-\sqrt{${1:``rv=value``}} $0
+snippet sq "\sqrt{}" iA
+sqrt(${1:``rv=visual``}) $0
 endsnippet
 
 context math(context)
 snippet compl "complement" iA
-^{c}
+^(complement)
 endsnippet
 
 context math(context)
 snippet td "to the ... power / superscript" iA
-^{$1}$0
+^($1)$0
 endsnippet
 
 context math(context)
 snippet rd "to the ... power / superscript" iA
-^{($1)}$0
+^($1)$0
 endsnippet
 
 ### Decorators ###
 context math(context)
 snippet conj "conjugate" iA
-\overline{$1}$0
+overline($1)$0
 endsnippet
 
 priority 10
 context math(context)
 snippet bar "bar" iA
-\overline{$1}$0
+overline($1)$0
 endsnippet
 
 priority 100
 context math(context)
 snippet `([a-zA-Z])bar` "bar" iA
-\overline{``rv=m[1]``}
+overline(``rv=m[1]``)
 endsnippet
 
-context math(context)
-snippet box "conjugate" iA
-\boxed{${1:``rv=visual``}}$0
-endsnippet
+# context math(context)
+# snippet box "conjugate" iA
+# \boxed{${1:``rv=visual``}}$0
+# endsnippet
 
 priority 200
 context math(context)
 snippet hbar "bar" iA
-\hbar
+planck.reduce
 endsnippet
 
 priority 10
 context math(context)
 snippet hat "hat" iA
-\hat{$1}$0
+hat($1)$0
 endsnippet
 
 priority 100
 context math(context)
 snippet `([a-zA-Z])hat` "hat" iA
-\hat{``rv=m[1]``}
+hat(``rv=m[1]``)
 endsnippet
 
 
@@ -199,19 +210,19 @@ endsnippet
 # // -> \frac{}{}
 context math(context)
 snippet // "Fraction" iA
-\frac{$1}{$2}$0
+($1)/($2)$0
 endsnippet
 
-context math(context)
-snippet / "Fraction" i
-\frac{``rv=visual``}{$1}$0
-endsnippet
+# context math(context)
+# snippet / "Fraction" i
+# (``rv=visual``)/($1)$0
+# endsnippet
 
 # 3/        ->	\frac{3}{}
 # 4\pi^2/   ->	\frac{4\pi^2}{}
 context math(context)
 snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction" wA
-\frac{``rv = m[1]``}{$1}$0
+(``rv = m[1]``)/($1)$0
 endsnippet
 
 # (1+(2+3)/)    ->  (1 + \frac{2+3}{})
@@ -229,453 +240,298 @@ while (true) {
     if (depth == 0) break;
     i -= 1;
 }
-rv = stripped.slice(0, i) + "\\frac{" + stripped.slice(i+1, -1) + "}";
-``{$1}$0
+rv = stripped.slice(0, i) + "(" + stripped.slice(i+1, -1) + ")";
+``/($1)$0
 endsnippet
 
 
 ### Environments ###
 context math(context)
-snippet beg "begin{} / end{}" wA
-\begin{$1}
-	$0
-\end{$1}
-endsnippet
-
-context math(context)
-snippet ali "Aligned environment" bA
-\begin{aligned}
-	${1:``rv=visual``}
-\end{aligned}
-endsnippet
-
-context math(context)
 snippet pmat "pmat" iA
-\begin{pmatrix} $1 \end{pmatrix} $0
+mat(delim: "(", $1) $0
 endsnippet
 
 context math(context)
 snippet bmat "bmat" iA
-\begin{bmatrix} $1 \end{bmatrix} $0
+mat(delim: "[", $1) $0
 endsnippet
 
 context math(context)
 snippet case "cases" wA
-\begin{cases}
-	$1
-\end{cases}
+cases(
+    $1
+) $0
 endsnippet
-
-# context math(context)
-# snippet bigfun "Big function" iA
-# \begin{aligned}
-# 	$1: $2 &\longrightarrow $3 \\
-# 	$4 &\longmapsto $1($4) = $0
-# \end{aligned}
-# endsnippet
 
 context math(context)
 snippet cvec "column vector" iA
-\begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ ${1}_${3:n} \end{pmatrix}
+vec(${1:x}_${2:1}, dots.v, $1_${2:n})
 endsnippet
 
 
 ### Equators, Operators ###
 priority 100
-context math(context)
 snippet ... "ldots" iA
-\ldots
-endsnippet
-
-context math(context)
-snippet => "implies" iA
-\implies
-endsnippet
-
-context math(context)
-snippet imby "implied by" iA
-\impliedby
-endsnippet
-
-context math(context)
-snippet iff "iff" iA
-\iff
+#sym.dots.h
 endsnippet
 
 context math(context)
 snippet == "equals" iA
-&= $1 \\\\
+&= $1 \\
 endsnippet
 
-context math(context)
-snippet != "equals" iA
-\neq 
-endsnippet
-
-context math(context)
-snippet <= "leq" iA
-\le 
-endsnippet
-
-context math(context)
-snippet >= "geq" iA
-\ge 
-endsnippet
-
-context math(context)
-snippet >> ">>" iA
-\gg
-endsnippet
-
-context math(context)
-snippet << "<<" iA
-\ll
-endsnippet
-
-context math(context)
-snippet ~~ "~" iA
-\sim 
-endsnippet
-
-context math(context)
-snippet EE "Exists" iA
-\exists 
-endsnippet
-
-context math(context)
-snippet AA "forall" iA
-\forall 
-endsnippet
+# context math(context)
+# snippet ~~ "~" iA
+# \sim 
+# endsnippet
 
 context math(context)
 snippet xx "cross" iA
-\times 
+times 
 endsnippet
 
 priority 100
 context math(context)
 snippet ** "cdot" iA
-\cdot 
+dot 
 endsnippet
 
-priority 100
-context math(context)
-snippet -> "to" iA
-\to 
-endsnippet
+# context math(context)
+# snippet !> "mapsto" iA
+# \mapsto 
+# endsnippet
 
-priority 200
-context math(context)
-snippet <-> "leftrightarrow" iA
-\leftrightarrow
-endsnippet
+# context math(context)
+# snippet \\\ "setminus" iA
+# \setminus
+# endsnippet
 
-context math(context)
-snippet !> "mapsto" iA
-\mapsto 
-endsnippet
+# context math(context)
+# snippet || "mid" iA
+#  \mid 
+# endsnippet
 
-context math(context)
-snippet \\\ "setminus" iA
-\setminus
-endsnippet
-
-context math(context)
-snippet || "mid" iA
- \mid 
-endsnippet
-
-context math(context)
-snippet cc "subset" Ai
-\subset 
-endsnippet
+# context math(context)
+# snippet cc "subset" Ai
+# \subset 
+# endsnippet
 
 context math(context)
 snippet notin "not in " iA
-\not\in 
+in.not 
 endsnippet
 
-context math(context)
-snippet inn "in " iA
-\in 
-endsnippet
+# context math(context)
+# snippet inn "in " iA
+# \in 
+# endsnippet
 
-context math(context)
-snippet Nn "cap" iA
-\cap 
-endsnippet
+# context math(context)
+# snippet Nn "cap" iA
+# \cap 
+# endsnippet
 
-context math(context)
-snippet UU "cup" iA
-\cup 
-endsnippet
+# context math(context)
+# snippet UU "cup" iA
+# \cup 
+# endsnippet
 
-context math(context)
-snippet uuu "bigcup" iA
-\bigcup_{${1:i \in ${2: I}}} $0
-endsnippet
+# context math(context)
+# snippet uuu "bigcup" iA
+# \bigcup_{${1:i \in ${2: I}}} $0
+# endsnippet
 
-context math(context)
-snippet nnn "bigcap" iA
-\bigcap_{${1:i \in ${2: I}}} $0
-endsnippet
+# context math(context)
+# snippet nnn "bigcap" iA
+# \bigcap_{${1:i \in ${2: I}}} $0
+# endsnippet
 
-context math(context)
-snippet <! "normal" iA
-\triangleleft 
-endsnippet
+# context math(context)
+# snippet <! "normal" iA
+# \triangleleft 
+# endsnippet
 
-context math(context)
-snippet <> "hokje" iA
-\diamond 
-endsnippet
+# context math(context)
+# snippet <> "hokje" iA
+# \diamond 
+# endsnippet
 
 
 ### Brackets, Delimiters ###
 context math(context)
 snippet ceil "ceil" iA
-\left\lceil $1 \right\rceil $0
+ceil($1) $0
 endsnippet
 
 context math(context)
 snippet floor "floor" iA
-\left\lfloor $1 \right\rfloor$0
+floor($1) $0
 endsnippet
 
 context math(context)
-snippet () "left( right)" iA
-\left( ${1:``rv=visual``} \right) $0
-endsnippet
-
-context math(context)
-snippet lr "left( right)" i
-\left( ${1:``rv=visual``} \right) $0
-endsnippet
-
-context math(context)
-snippet lr( "left( right)" i
-\left( ${1:``rv=visual``} \right) $0
-endsnippet
-
-context math(context)
-snippet lr| "left| right|" i
-\left| ${1:``rv=visual``} \right| $0
-endsnippet
-
-context math(context)
-snippet lr{ "left\{ right\}" i
-\left\\{ ${1:``rv=visual``} \right\\} $0
-endsnippet
-
-context math(context)
-snippet lrb "left\{ right\}" i
-\left\\{ ${1:``rv=visual``} \right\\} $0
-endsnippet
-
-context math(context)
-snippet lr[ "left[ right]" i
-\left[ ${1:``rv=visual``} \right] $0
-endsnippet
-
-context math(context)
-snippet lra "leftangle rightangle" iA
-\left<${1:``rv=visual``} \right>$0
+snippet round "floor" iA
+round($1) $0
 endsnippet
 
 context math(context)
 snippet norm "norm" iA
-\|$1\|$0
+norm($1) $0
 endsnippet
 
 context math(context)
-snippet set "set" wA
-\\{$1\\} $0
+snippet abs "abs" iA
+abs($1) $0
 endsnippet
+
+context math(context)
+snippet lr "left( right)" i
+lr( ${1:``rv=visual``} ) $0
+endsnippet
+
+context math(context)
+snippet lr( "left( right)" i
+lr(( ${1:``rv=visual``} )) $0
+endsnippet
+
+context math(context)
+snippet lr| "left| right|" i
+lr(abs( ${1:``rv=visual``} )) $0
+endsnippet
+
+context math(context)
+snippet lr{ "left\{ right\}" i
+lr({ ${1:``rv=visual``} }) $0
+endsnippet
+
+context math(context)
+snippet lrb "left\{ right\}" i
+lr({ ${1:``rv=visual``} }) $0
+endsnippet
+
+context math(context)
+snippet lr[ "left[ right]" i
+lr([ ${1:``rv=visual``} ]) $0
+endsnippet
+
+context math(context)
+snippet lra "leftangle rightangle" iA
+lr(angle.l ${1:``rv=visual``} angle.r) $0
+endsnippet
+
+# context math(context)
+# snippet set "set" wA
+# \\{$1\\} $0
+# endsnippet
 
 
 ### Functions ###
 context math(context)
 snippet sum "sum" w
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+sum_(n=${1:1})^(${2:infinity}) ${3:a_n z^n}
 endsnippet
 
 context math(context)
 snippet taylor "taylor" w
-\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
+sum_(${1:k}=${2:0})^(${3:infinity}) ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
 context math(context)
 snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} 
-endsnippet
-
-context math(context)
-snippet limsup "limsup" w
-\limsup_{${1:n} \to ${2:\infty}} 
+lim_(${1:n} -> ${2:infinity}) 
 endsnippet
 
 context math(context)
 snippet prod "product" w
-\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+product_(${1:n=${2:1}})^(${3:infinity}) ${4:``rv=visual``} $0
 endsnippet
 
 context math(context)
 snippet part "d/dx" w
-\frac{\partial ${1:V}}{\partial ${2:x}} $0
+(diff ${1})/(diff ${2:x}) $0
+endsnippet
+
+context math(context)
+snippet ddx "d/dx" wA
+(diff ${1})/(diff ${2:x}) $0
 endsnippet
 
 context math(context)
 snippet la+ "Laplace" iA
-\mathcal{L} \left\\{ $1 \right\\} $0
-endsnippet
-
-priority 100
-context math(context)
-snippet `(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)` "transcendental func" wA
-\``rv = m[1]``$0
-endsnippet
-
-priority 200
-context math(context)
-snippet `(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)` "rtrig/ln func" wA
-\``rv = m[1]``
+cal(L) lr({ $1 }) $0
 endsnippet
 
 priority 300
 context math(context)
 snippet iint "integral" wA
-\int_{${1:-\infty}}^{${2:\infty}} ${3:``rv=visual``} $0
+integral_(${1:-infinity})^(${2:infinity}) ${3:``rv=visual``} $0
 endsnippet
 
 context math(context)
 snippet tt "text" iA
-\text{$1}$0
-endsnippet
-
-context math(context)
-snippet SI "unit" iA
-\ \pu{$1}$0
-endsnippet
-
-context math(context)
-snippet pu "unit" iA
-\ \pu{$1}$0
-endsnippet
-
-context math(context)
-snippet unit "unit" i
-\ \pu{$1}$0
+"$1"$0
 endsnippet
 
 
 ### Symbols ###
 context math(context)
-snippet ooo "\infty" iA
-\infty
-endsnippet
-
-context math(context)
-snippet rij "mrij" i
-(${1:x}_${2:n})_{${3:$2}\\in${4:\\N}}$0
-endsnippet
-
-context math(context)
 snippet xnn "x_n" iA
-x_{n}
+x_(n)
 endsnippet
 
 context math(context)
 snippet ynn "y_n" iA
-y_{n}
+y_(n)
 endsnippet
 
 context math(context)
 snippet xii "x_i" iA
-x_{i}
+x_(i)
 endsnippet
 
 context math(context)
 snippet yii "y_i" iA
-y_{i}
+y_(i)
 endsnippet
 
 context math(context)
 snippet xjj "x_j" iA
-x_{j}
+x_(j)
 endsnippet
 
 context math(context)
 snippet yjj "y_j" iA
-y_{j}
+y_(j)
 endsnippet
 
 context math(context)
 snippet xp1 "x_n+1" iA
-x_{n+1}
+x_(n+1)
 endsnippet
 
 context math(context)
 snippet xmm "x_m" iA
-x_{m}
+x_(m)
 endsnippet
 
 
 ### Characters ###
 context math(context)
 snippet mcal "mathcal" iA
-\mathcal{$1}$0
-endsnippet
-
-context math(context)
-snippet lll "l" iA
-\ell
+cal($1)$0
 endsnippet
 
 context math(context)
 snippet nabl "nabla" iA
-\nabla 
-endsnippet
-
-context math(context)
-snippet R0+ "R0+" iA
-\R_0^+
-endsnippet
-
-context math(context)
-snippet NN "n" iA
-\N
+nabla
 endsnippet
 
 context math(context)
 snippet OO "emptyset" iA
-\O
+diameter
 endsnippet
 
 context math(context)
-snippet RR "real" iA
-\R
+snippet null "emptyset" i
+diameter
 endsnippet
 
-context math(context)
-snippet QQ "Q" iA
-\Q
-endsnippet
-
-context math(context)
-snippet ZZ "Z" iA
-\Z
-endsnippet
-
-context math(context)
-snippet HH "H" iA
-\mathbb{H}
-endsnippet
-
-context math(context)
-snippet DD "D" iA
-\mathbb{D}
-endsnippet
-
-# snippet letw "let omega" iA
-# Let $\Omega \subset \C$ be open.
-# endsnippet
