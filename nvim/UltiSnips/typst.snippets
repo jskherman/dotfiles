@@ -9,7 +9,7 @@ endsnippet
 
 # ==== TEXT snippets ====
 
-snippet table "Table figure" b
+snippet tbl "Table figure" b
 #figure(
   table(
     columns: (${3:c}),
@@ -207,6 +207,16 @@ snippet part "d/dx" w
 endsnippet
 
 context "math()"
+snippet ddx "d/dx" wA
+(diff ${1})/(diff ${2:x}) $0
+endsnippet
+
+context "math()"
+snippet la+ "Laplace" iA
+cal(L) lr({ $1 }) $0
+endsnippet
+
+context "math()"
 snippet sq "sqrt()" iA
 sqrt(${1:${VISUAL}}) $0
 endsnippet
@@ -298,12 +308,12 @@ endsnippet
 
 priority 300
 context "math()"
-snippet dint "integral" wA
+snippet iint "integral" wA
 integral_(${1:-infinity})^(${2:infinity}) ${3:${VISUAL}} $0
 endsnippet
 
 context "math()"
-snippet inv "inverse" iA
+snippet invs "inverse" iA
 ^(-1)
 endsnippet
 
