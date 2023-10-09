@@ -58,7 +58,7 @@ snippet pac "Package" b
 #import "@preview/${1:package}:${2:ver}": $0
 endsnippet
 
-snippet tbl "Table figure" b
+snippet ftbl "Table figure" b
 #figure(
   table(
     columns: (${3:c}),
@@ -69,14 +69,14 @@ snippet tbl "Table figure" b
 ) <tbl-${2:label}>
 endsnippet
 
-snippet fig "Image figure" b
+snippet fimg "Image figure" b
 #figure(
   image("$0", width: ${3:auto}, height: ${4:auto}),
   caption: [${1:caption}],
 ) <fig-${2:label}>
 endsnippet
 
-snippet codefig "Code figure" b
+snippet fcode "Code figure" b
 #figure(
   caption: [${1:caption}],
 )[
@@ -88,6 +88,10 @@ endsnippet
 
 snippet terml "Term list" bA
 / ${1:Term}: ${0:description}
+endsnippet
+
+snippet `tbl(\d+)x(\d+)` "Create table cells" wA
+``rv = ('[], '.repeat(m[2]) + '\n').repeat(m[1])``
 endsnippet
 
 
@@ -451,8 +455,13 @@ snippet part "d/dx" w
 endsnippet
 
 context math(context)
-snippet ddx "d/dx" wA
+snippet ddp "d/dx" wA
 (diff ${1})/(diff ${2:x}) $0
+endsnippet
+
+context math(context)
+snippet ddx "d/dx" wA
+(d ${1})/(d ${2:x}) $0
 endsnippet
 
 context math(context)
