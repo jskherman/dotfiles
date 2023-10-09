@@ -1,5 +1,5 @@
 # A snippet to insert a box around the current selection
-snippet box "Box" A
+snippet |box| "Box" A
 ``rv = '┌' + '─'.repeat(t[0].length + 2) + '┐'``
 │ $1 │
 ``rv = '└' + '─'.repeat(t[0].length + 2) + '┘'``
