@@ -2,22 +2,36 @@
     Run("wt.exe")
 }
 
+; Todoist Task Templates
 #HotIf WinActive("– Todoist")
 #!T:: {
     ; study_item := InputBox("Please enter what you are studying:", "Todoist: Chapter?", "W300 H100")
     ; Create a GUI window
     Prompt := Gui(, "Todoist Study Item")
+
     ; Prompt for the study item
-    Prompt.Add("Text", "R1 w300 vPrompt1", "Please enter what you are studying:")
-    study_item := Prompt.AddEdit("R1 w300 vStudyItem", "")
+    Prompt.Add("Text", "h1 w250", "")
+    Prompt.Add("Text", "R1 w250 vPrompt1", "Please enter what you are studying:")
+    study_item := Prompt.AddEdit("R1 w250 vStudyItem", "")
+    Prompt.Add("Text", "h1 w250", "")
+
     ; Prompt for the category
-    Prompt.Add("Text", "R1 w300 vPrompt2", "What is the subject category?")
-    category := Prompt.AddDropDownList("R3 w300 vCategoryChoice Choose1", ["D1-PCP", "D2-CHE", "D3-GEN"])
+    Prompt.Add("Text", "R1 w250 vPrompt2", "What is the subject category?")
+    category := Prompt.AddDropDownList("R3 w250 vCategoryChoice Choose1", ["D1-PCP", "D2-CHE", "D3-GEN"])
+    Prompt.Add("Text", "R1 w250", "")
+
     ; Add a submit button
-    Prompt.AddButton("Default w80 vSubmitBtn", "Submit").OnEvent("Click", Submit)
+    Prompt.AddButton("Default x35 w80 vSubmitBtn", "&Submit").OnEvent("Click", Submit)
+    Prompt.AddButton("x+40 w80 vCloseBtn", "&Cancel").OnEvent("Click", Close)
+
     ; Show the GUI
     Prompt.Show()
-    ; Wait for the Submit button to be clicked
+
+    Close(*) {
+        Prompt.Destroy()
+    }
+
+    ; Event to execute when the Submit button is clicked
     Submit(*) {
         ; Save the text to be inserted to the clipboard
         A_Clipboard := Format('
