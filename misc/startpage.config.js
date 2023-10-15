@@ -1,4 +1,4 @@
-const defaultConfig = {
+{
 	username: "jskherman",
 	theme: {
 		backgroundColor: "#121317",
@@ -315,5 +315,3 @@ const defaultConfig = {
 		]
 	}
 }
-
-export default defaultConfig
