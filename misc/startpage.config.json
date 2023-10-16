@@ -130,16 +130,6 @@
 				"alias": "lib",
 				"name": "Library Genesis Search",
 				"url": "http://libgen.rs/search.php?req={}"
-			},
-			{
-				"alias": "@f",
-				"name": "Edge Favorites Search",
-				"url": "edge://favorites/?q={}"
-			},
-			{
-				"alias": "@h",
-				"name": "Edge History Search",
-				"url": "edge://history/all?q={}"
 			}
 		]
 	},
@@ -168,7 +158,7 @@
 					{
 						"name": "TinyWow",
 						"url": "https://tinywow.com/",
-						"icon": "tabler:tool",
+						"icon": "tabler:tool"
 					},
 					{
 						"name": "Paisa",
@@ -183,7 +173,7 @@
 				"align": "left",
 				"links": [
 					{
-						"name": "GMail",
+						"name": "Gmail",
 						"url": "https://mail.google.com/",
 						"icon": "mdi:gmail"
 					},
@@ -228,6 +218,11 @@
 						"name": "Facebook",
 						"url": "https://facebook.com",
 						"icon": "simple-icons:facebook"
+					},
+					{
+						"name": "LinkedIn",
+						"url": "https://linkedin.com",
+						"icon": "mdi:linkedin"
 					}
 				]
 			},
@@ -282,6 +277,28 @@
 						"name": "Tracker",
 						"url": "https://docs.google.com/spreadsheets/d/1g_tdpx8HMnyQvazqzlpqYjWog24osJ-B72z-92iKL_w/edit",
 						"icon": "mdi:google-spreadsheet"
+					}
+				]
+			},
+			{
+				"title": "Study",
+				"color": "green",
+				"align": "left",
+				"links": [
+					{
+						"name": "Anki",
+						"url": "https://ankiweb.net/",
+						"icon": "fluent-mdl2:stack"
+					},
+					{
+						"name": "Saved Lectures",
+						"url": "https://1drv.ms/f/s!Aq-Pwiif__0Fj-9oLiU1DbH2YepzVA?e=s3x7al",
+						"icon": "ph:video-bold"
+					},
+					{
+						"name": "BXR Tracker",
+						"url": "https://docs.google.com/spreadsheets/d/1xdm6-FX9sqeqHLrtg30zDPaIB6dtBXpnY95_CRijFS0/edit",
+						"icon": "teenyicons:book-solid"
 					}
 				]
 			},
