@@ -299,36 +299,36 @@
 						"name": "BXR Tracker",
 						"url": "https://docs.google.com/spreadsheets/d/1xdm6-FX9sqeqHLrtg30zDPaIB6dtBXpnY95_CRijFS0/edit",
 						"icon": "teenyicons:book-solid"
-					}
-				]
-			},
-			{
-				"title": "Interesting",
-				"color": "cyan",
-				"align": "left",
-				"links": [
-					{
-						"name": "Hacker News",
-						"url": "https://news.ycombinator.com/",
-						"icon": "fa:hacker-news"
-					},
-					{
-						"name": "Raindrop",
-						"url": "https://app.raindrop.io/",
-						"icon": "mdi:bookmark"
 					},
 					{
 						"name": "ADHD Wiki",
 						"url": "https://romankogan.net/adhd/",
 						"icon": "mdi:brain"
-					},
-					{
-						"name": "It's Foss",
-						"url": "https://itsfoss.com/",
-						"icon": "ri:mastodon-fill"
 					}
 				]
 			}
+			// {
+			// 	"title": "Interesting",
+			// 	"color": "cyan",
+			// 	"align": "left",
+			// 	"links": [
+			// 		{
+			// 			"name": "Hacker News",
+			// 			"url": "https://news.ycombinator.com/",
+			// 			"icon": "fa:hacker-news"
+			// 		},
+			// 		{
+			// 			"name": "Raindrop",
+			// 			"url": "https://app.raindrop.io/",
+			// 			"icon": "mdi:bookmark"
+			// 		},
+			// 		{
+			// 			"name": "It's Foss",
+			// 			"url": "https://itsfoss.com/",
+			// 			"icon": "ri:mastodon-fill"
+			// 		}
+			// 	]
+			// }
 		]
 	}
 }
