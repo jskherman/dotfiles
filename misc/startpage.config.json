@@ -17,7 +17,7 @@
 		"orange": "#ff8800"
 	},
 	"wallpaper": {
-		"url": "",
+		"url": "https://pub-fad2866aa25b4a30b19bef698bfcc735.r2.dev/20231016103031_moving.gif",
 		"easing": "ease-in-out",
 		"fadeIn": true,
 		"blur": true
