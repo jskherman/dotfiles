@@ -60,6 +60,7 @@ function Set-LocationKeyword {
         "basecamp"  { Set-Location "$ENV:onedrive\Documents\Basecamp" }
         "archive" { Set-Location "$ENV:onedrive\Documents\Archive" }
         "notes" { Set-Location "$ENV:onedrive\z" }
+        "history" { Set-Location "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\" }
         default { Set-Location $Keyword }
     }
 }
