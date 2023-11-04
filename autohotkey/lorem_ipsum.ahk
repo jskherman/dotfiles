@@ -86,7 +86,7 @@ random_paragraph() {
     ; Generate 2 random paragraphs
 
     Loop 2 {
-        SendText random_paragraph() "{Enter 2}"
+        Send random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -95,7 +95,7 @@ random_paragraph() {
     ; Generate 3 random paragraphs
 
     Loop 3 {
-        SendText random_paragraph() "{Enter 2}"
+        Send random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -104,7 +104,7 @@ random_paragraph() {
     ; Generate 4 random paragraphs
 
     Loop 4 {
-        SendText random_paragraph() "{Enter 2}"
+        Send random_paragraph() "{Enter 2}"
     }
     return
 }
@@ -197,7 +197,7 @@ random_lnparagraph() {
     ; Generate 2 random paragraphs
 
     Loop 2 {
-        SendText random_lnparagraph() "{Enter 2}"
+        Send random_lnparagraph() "{Enter 2}"
     }
     return
 }
@@ -206,7 +206,7 @@ random_lnparagraph() {
     ; Generate 3 random paragraphs
 
     Loop 3 {
-        SendText random_lnparagraph() "{Enter 2}"
+        Send random_lnparagraph() "{Enter 2}"
     }
     return
 }
@@ -215,7 +215,7 @@ random_lnparagraph() {
     ; Generate 4 random paragraphs
 
     Loop 4 {
-        SendText random_lnparagraph() "{Enter 2}"
+        Send random_lnparagraph() "{Enter 2}"
     }
     return
 }
