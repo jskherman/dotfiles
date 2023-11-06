@@ -68,6 +68,28 @@ function Set-LocationKeyword {
 # Create an alias for 'cd' to use our custom function
 Set-Alias -Name nav -Value Set-LocationKeyword -Option AllScope
 
+function notify {
+  param (
+    [string]$Message
+  )
+
+  $creds = "$($env:NTFY_USERNAME):$($env:NTFY_PASSWORD)"
+  $headers = @{
+    Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($creds))
+  }
+
+  try {
+    $response = Invoke-RestMethod -Uri 'https://ntfy.jskherman.com/000-alerts' -Method Post -Headers $headers -Body $Message -ErrorAction Stop
+    if ($response -ne $null) {
+      Write-Output '200 OK'
+    }
+  } catch {
+    $statusCode = $_.Exception.Response.StatusCode.Value__
+    $statusDescription = $_.Exception.Response.StatusDescription
+    $responseBody = $_.Exception.Response.Content
+    Write-Output "Error: $statusCode $statusDescription`n$responseBody"
+  }
+}
 
 # Find files from OneDrive sync conflicts
 function findconflicts {
