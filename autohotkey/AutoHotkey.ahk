@@ -22,4 +22,4 @@ GroupAdd "Snippets", "ahk_exe WindowsTerminal.exe"
 #include "private/hp.ahk"
 
 ; Complex scripts
-#include "scratchpad/mdsp.ahk"
+; #include "scratchpad/mdsp.ahk"
