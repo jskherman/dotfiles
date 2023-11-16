@@ -53,17 +53,20 @@ function Set-LocationKeyword {
     )
 
     switch ($Keyword) {
-        "dotf" { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
-        "dotfiles" { Set-Location "$ENV:onedrive\Documents\Workspace\dotfiles" }
+        "~" { Set-Location "$ENV:onedrive\jskherman" }
+        "dotf" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
+        "dotfiles" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
         "dl"   { Set-Location "$ENV:USERPROFILE\Downloads" }
         "desk" { Set-Location "$ENV:onedrive\Desktop" }
         "desktop" { Set-Location "$ENV:onedrive\Desktop" }
+        "dev" { Set-Location "$ENV:onedrive\jskherman\dev" }
+        "home" { Set-Location "$ENV:onedrive\jskherman" }
         "pics" { Set-Location "$ENV:onedrive\Pictures" }
         "docs" { Set-Location "$ENV:onedrive\Documents" }
         "vids" { Set-Location "$ENV:onedrive\Videos" }
         "basecamp"  { Set-Location "$ENV:onedrive\Documents\Basecamp" }
         "archive" { Set-Location "$ENV:onedrive\Documents\Archive" }
-        "notes" { Set-Location "$ENV:onedrive\z" }
+        "notes" { Set-Location "$ENV:onedrive\jskherman\notes" }
         "history" { Set-Location "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\" }
         default { Set-Location $Keyword }
     }
