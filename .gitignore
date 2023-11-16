@@ -8,3 +8,11 @@ packages/
 
 # Backups
 nvim.7z
+
+# Secrets
+*.env
+.env
+
+# LazyVim
+lazy-lock.json
+lazyvim.json
