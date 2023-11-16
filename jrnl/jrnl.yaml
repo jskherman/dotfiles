@@ -8,7 +8,7 @@ default_minute: 0
 editor: nvim
 encrypt: false
 highlight: true
-indent_character: '|'
+indent_character: "|"
 journals:
   default:
     encrypt: true
@@ -20,7 +20,7 @@ journals:
     encrypt: true
     journal: E:\OneDrive\Documents\Basecamp\(P--) Personal\(PN-) Notes\(PN2) Current\(PN2 JN) JRNL\work.txt
 linewrap: 79
-tagsymbols: '#@'
+tagsymbols: "#@"
 template: false
-timeformat: '%Y-%m-%d %H:%M:%S'
-version: v3.3
+timeformat: "%Y-%m-%d %H:%M:%S"
+version: v4.0.1
