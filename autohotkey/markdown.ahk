@@ -4,6 +4,14 @@
 
 ::fn;;::{Raw}<!--- Footnotes --->
 
+:*:ad;;:: {
+    Send Format("{Raw}{{< admonition type=info title=`"{1}`" open=false >}}", FormatTime(, "yyyy-MM-dd"))
+    Send "{Enter}{Enter}{Enter}{Enter}"
+    Send "{Raw}{{< /admonition >}}"
+    Send "{Up}{Up}"
+    return
+}
+
 /* Highlights */
 
 :*:==1;;::_====_{Left 3}        ; Italic highlight
