@@ -30,40 +30,41 @@ reviewdays_left := DateDiff(20231125, A_Now, "D")
 }
 
 ; Time
-::dt;;:: {
+:*:dt;;:: {
     ; Current time as `HH:mm`
     SendInput Format("``{1}``", FormatTime(, "HH:mm"))
     return
 }
 
-::ft;;:: {
+:*:ft;;:: {
     ; Current time as `HH:mm`
     SendInput ("\code{{}" Format("{1}", FormatTime(, "HH:mm")) "{}}")
     return
 }
 
-::mt;;:: {
+:*:mt;;:: {
     ; Current time as `HH:mm`
     SendInput Format("{1}H", FormatTime(, "HHmm"))
     return
 }
 
 /* Timestamps */
-::tid;;:: {
+:*:tid;;:: {
     ; Timestamp ID (YYYYMMDDHHmmss)
     SendInput A_Now
     return
 }
 
-::iso;;::
-::ts;;:: {
+:*:iso;;::
+:*:ts;;:: {
     ; ISO 8601 timestamp
     SendInput FormatTime(, "yyyy-MM-ddTHH:mm:ss")
     return
 }
 
-::uts;;::
-::unixts;;:: {
+:*:uts;;::
+:*:unix;;::
+:*:unixts;;:: {
     ; Unix timestamp (seconds)
     SendInput DateDiff(A_NowUTC, 19700101000000, "S")
     return
