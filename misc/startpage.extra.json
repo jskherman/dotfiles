@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Interesting",
+        "color": "cyan",
+        "align": "left",
+        "links": [
+            {
+                "name": "Hacker News",
+                "url": "https://news.ycombinator.com/",
+                "icon": "fa:hacker-news"
+            },
+            {
+                "name": "Raindrop",
+                "url": "https://app.raindrop.io/",
+                "icon": "mdi:bookmark"
+            },
+            {
+                "name": "It's Foss",
+                "url": "https://itsfoss.com/",
+                "icon": "ri:mastodon-fill"
+            }
+        ]
+    }
+]
