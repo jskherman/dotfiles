@@ -25,6 +25,10 @@ New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pn
 New-Alias ripgrep "rg"
 Set-Alias -Name touch -Value New-Item
 
+function inkscape {
+    wsl /usr/bin/inkscape $args
+}
+
 ### Custom Functions ###
 # Git add, commit, push
 function gitacp { git add .; git commit -m "$args"; git push}
