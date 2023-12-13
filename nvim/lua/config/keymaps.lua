@@ -24,7 +24,6 @@ map("v", "<A-Down>", ":m +1<CR>", { desc = "Move line down" }) -- move line down
 
 -- alpha.nvim Dashboard keymap
 map("n", "<leader>;", "<cmd>Alpha<CR>", { desc = "Dashboard" })
-map("n", "<leader>xs", "<cmd>call UltiSnips#RefreshSnippets()<CR>", { desc = "Reload Ultisnips" })
 
 -- VimTex keybindings
 map("n", "<localleader>lw", "<cmd>VimtexCountWords<CR>", { desc = "Count words in doc" })
@@ -35,3 +34,7 @@ map("n", "h", "<Left>", { noremap = true, silent = true })
 map("n", "j", "<Down>", { noremap = true, silent = true })
 map("n", "k", "<Up>", { noremap = true, silent = true })
 map("n", "l", "<Right>", { noremap = true, silent = true })
+
+-- LuaSnip / Ultisnips keybindings
+map("n", "<leader>xs", "<cmd>lua require('luasnip').snippets={}; require('luasnip.loaders.from_lua').load({ paths = { './LuaSnip' } })<CR>", { desc = "Reload LuaSnip" } )
+-- map("n", "<leader>xs", "<cmd>call UltiSnips#RefreshSnippets()<CR>", { desc = "Reload Ultisnips" })
