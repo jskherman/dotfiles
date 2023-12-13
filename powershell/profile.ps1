@@ -12,7 +12,7 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 ### Enable autocomplete commands ###
-. E:\OneDrive\Documents\Workspace\dotfiles\powershell\deta.ps1
+. E:\OneDrive\jskherman\dotfiles\powershell\deta.ps1
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -24,6 +24,8 @@ New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
 New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
 New-Alias ripgrep "rg"
 Set-Alias -Name touch -Value New-Item
+Set-Alias -Name which -Value Get-Command
+
 
 function inkscape {
     wsl /usr/bin/inkscape $args
