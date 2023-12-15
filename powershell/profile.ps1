@@ -21,6 +21,7 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
+New-Alias qvim "$env:PROGRAMFILES\Neovim\bin\nvim-qt.exe"
 New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
 New-Alias ripgrep "rg"
 Set-Alias -Name touch -Value New-Item
