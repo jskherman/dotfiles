@@ -10,9 +10,10 @@ Folders:
 
 ## Symbolic links
 
+- `autohotkey/AutoHotkey.ahk <<===>> shell:startup\AutoHotkey.ahk.lnk`
 - `espanso <<===>> %APPDATA%\espanso`
 - `jrnl <<===>> %USERPROFILE%\.config\jrnl`
 - `nvim <<===>> %LOCALAPPDATA%\nvim`
-- `powershell/profile.ps1 <<===>> E:\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
-- `sioyek/keys_user.config <<===>> E:\OneDrive\Documents\Archive\apps\sioyek\keys_user.config`
-- `sioyek/prefs_user.config <<===>> E:\OneDrive\Documents\Archive\apps\sioyek\prefs_user.config`
+- `powershell/profile.ps1 <<===>> %USERPROFILE%\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
+- `sioyek/keys_user.config <<===>> %USERPROFILE%\OneDrive\Documents\Archive\apps\sioyek\keys_user.config`
+- `sioyek/prefs_user.config <<===>> %USERPROFILE%\OneDrive\Documents\Archive\apps\sioyek\prefs_user.config`
