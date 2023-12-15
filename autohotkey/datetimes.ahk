@@ -30,6 +30,7 @@ reviewdays_left := DateDiff(20231125, A_Now, "D")
 }
 
 ; Time
+:*:dtt::
 :*:dt;;:: {
     ; Current time as `HH:mm`
     SendInput Format("``{1}``", FormatTime(, "HH:mm"))
