@@ -4,6 +4,8 @@
 
 ; Todoist Task Templates
 #HotIf WinActive("– Todoist")
+
+; Win + Alt + T
 #!T:: {
     ; study_item := InputBox("Please enter what you are studying:", "Todoist: Chapter?", "W300 H100")
     ; Create a GUI window
