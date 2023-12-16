@@ -61,7 +61,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["A-."] = cmp.mapping(function()
+        ["C-n"] = cmp.mapping(function()
           if luasnip.choice_active() then
             luasnip.change_choice(1)
           end
