@@ -151,6 +151,155 @@ return {
     )
   ),
 
+  -- Callouts / Admonitions / Boxes
+  sb(
+    { trig = "defa", name = "Admonition: Defintion" },
+    fmta(
+      [[
+      #definition(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "exma", name = "Admonition: Example" },
+    fmta(
+      [[
+      #example(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "nota", name = "Admonition: Note" },
+    fmta(
+      [[
+      #note(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "atta", name = "Admonition: Attention" },
+    fmta(
+      [[
+      #attention(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "qta", name = "Admonition: Quote" },
+    fmta(
+      [[
+      #quote(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "thma", name = "Admonition: Theorem" },
+    fmta(
+      [[
+      #theorem(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+  sb(
+    { trig = "propa", name = "Admonition: Proposition" },
+    fmta(
+      [[
+      #proposition(
+        "<>",
+        footer: [<>]
+      )[
+        <>
+      ]
+      
+      <>]],
+      {
+        i(1, "title"),
+        i(2, "footer text"),
+        d(3, get_visual),
+        i(0)
+      }
+    )
+  ),
+
+
   -- -------------- MATH snippets ---------------
   -- Fractions
   sm(
