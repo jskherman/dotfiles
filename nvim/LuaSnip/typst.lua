@@ -41,7 +41,7 @@ end
 
 -- ----------------------------------------------------------------------------
 
--- Typst mode detection functions
+-- Typst detection functions
 local function in_markup()
   return vim.api.nvim_eval("typst#in_markup()") == 1
 end
@@ -56,6 +56,17 @@ end
 
 local function in_comment()
   return vim.api.nvim_eval("typst#in_comment()") == 1
+end
+
+-- Function that returns either a space or an empty string based on the input.
+local function space_conditional(args)
+  -- args[1] will be the text from the first node
+  local next_char = args[1]
+  if next_char and not string.match(next_char, "[,%.%?%- ]") then
+      return " "
+  else
+      return ""
+  end
 end
 
 -- ----------------------------------------------------------------------------
@@ -451,11 +462,17 @@ return {
 
   s(
     { trig = "mk", name = "Insert inline math" },
-    fmt(
-      [[
-    ${}$ {}]],
-      { i(1), i(0) }
-    )
+    fmt([[${}${}{} ]], {
+      i(1),
+      f(function(args, snip)
+          if args[1][1] and not string.match(args[1][1], "^[%.,%?%- ]") then
+              return " "
+          else
+              return ""
+          end
+      end, {2}),
+      i(2),
+    })
   ),
 
   -- -------------- MATH snippets ---------------
@@ -572,6 +589,24 @@ return {
   sm(
     { trig = "(%a)hat", name = "Letter hats", regTrig = true },
     fmt([[hat({}) ]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end)
+    })
+  ),
+
+  sm(
+    { trig = "(%a),.", name = "Vectors", regTrig = true },
+    fmt([[arrow({}) ]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end)
+    })
+  ),
+
+  sm(
+    { trig = "(%a).,", name = "Vectors", regTrig = true },
+    fmt([[arrow({}) ]], {
       f(function(_, snip)
         return snip.captures[1]
       end)
