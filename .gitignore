@@ -16,3 +16,6 @@ nvim.7z
 # LazyVim
 lazy-lock.json
 lazyvim.json
+
+# Neovim
+*.add.spl
