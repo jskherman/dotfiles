@@ -14,4 +14,8 @@ end
 
 -- chomosuke/typst-preview.nvim
 map("n", "<F5>", "<cmd>TypstPreview<CR>") -- Run TypstWatch
-map("n", "<c-F5>", "<cmd>TypstPreviewStop<CR>") -- Run TypstWatch
+map("n", "<C-F5>", "<cmd>TypstPreviewStop<CR>") -- Run TypstWatch
+
+-- Enable spellcheck
+vim.opt.spell = true
+
