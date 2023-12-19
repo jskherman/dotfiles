@@ -10,12 +10,14 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- Enable spellcheck
+vim.opt.spell = true
+
 -- map("n", "<F5>", "<cmd>TypstWatch<CR>") -- Run TypstWatch
 
 -- chomosuke/typst-preview.nvim
-map("n", "<F5>", "<cmd>TypstPreview<CR>") -- Run TypstWatch
-map("n", "<C-F5>", "<cmd>TypstPreviewStop<CR>") -- Run TypstWatch
+map("n", "<leader>cp", "<cmd>TypstPreview<CR>") -- Run TypstWatch
+map("n", "<leader>cq", "<cmd>TypstPreviewStop<CR>") -- Run TypstWatch
 
--- Enable spellcheck
-vim.opt.spell = true
+
 
