@@ -5,7 +5,11 @@ return {
     dependencies = {
       "honza/vim-snippets",
       config = function()
-        require("luasnip.loaders.from_lua").lazy_load({ paths = { "./LuaSnip" } })
+        require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/LuaSnip" } })
+        require("luasnip.loaders.from_snipmate").lazy_load({ paths = { vim.fn.stdpath("config") .. "/UltiSnips" } })
+
+        -- require("luasnip.loaders.from_lua").lazy_load({ paths = { "./LuaSnip" } })
+        
         -- require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "./LuaSnip/snipmate" } })
         -- require("luasnip.loaders.from_vscode").lazy_load()
         -- require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
