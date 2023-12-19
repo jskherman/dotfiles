@@ -1,8 +1,8 @@
-### Powershell Theme ###
+# ==== Powershell Theme ==== #
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\clean-detailed.omp.json" | Invoke-Expression
 # half-life, cert, emodipt-extend, clean-detailed, free-ukraine, hul10, takuya, material, slim
 
-### Import the Chocolatey Profile ###
+# ==== Import the Chocolatey Profile ==== #
 # This contains the necessary code to enable tab-completions to function for `choco`.
 # Be aware that if you are missing these lines from your profile, tab completion
 # for `choco` will not function. See https://ch0.co/tab-completion for details.
@@ -11,28 +11,42 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-### Enable autocomplete commands ###
+# ==== Enable autocomplete commands ==== #
 . E:\OneDrive\jskherman\dotfiles\powershell\deta.ps1
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-### Custom Aliases ###
-New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
-New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
-New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
-New-Alias qvim "$env:PROGRAMFILES\Neovim\bin\nvim-qt.exe"
-New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
-New-Alias ripgrep "rg"
+# ==== Custom Aliases ==== #
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name which -Value Get-Command
-
+New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
+New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
+New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
+New-Alias chrome "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
+New-Alias ripgrep "rg"
 
 function inkscape {
     wsl /usr/bin/inkscape $args
 }
 
-### Custom Functions ###
+#### Neovim ####
+$env:NVIM_APPNAME = 'nvim'
+
+New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
+
+function vt { $env:NVIM_APPNAME = 'nvim'; nvim $args }
+function vg { $env:NVIM_APPNAME = 'nvim'; nvim-qt $args }
+
+# $NVIM_APPNAME = 'nvim-quarto'
+function qvt { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim $args }
+function qvg { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim-qt $args }
+
+
+
+
+
+# ==== Custom Functions ==== #
 # Git add, commit, push
 function gitacp { git add .; git commit -m "$args"; git push}
 
