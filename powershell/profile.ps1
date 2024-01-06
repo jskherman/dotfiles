@@ -12,7 +12,7 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 # ==== Enable autocomplete commands ==== #
-. E:\OneDrive\jskherman\dotfiles\powershell\deta.ps1
+. "$PSScriptRoot\deta.ps1"
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -22,7 +22,7 @@ Set-Alias -Name touch -Value New-Item
 Set-Alias -Name which -Value Get-Command
 New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
 New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
-New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
+# New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
 New-Alias chrome "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
 New-Alias ripgrep "rg"
 
@@ -60,7 +60,7 @@ function rview { rich "$args" --emoji -y -w 90}
 function pipf { python -m pip freeze | Out-File -Encoding UTF8 "$args"}
 
 function conwebp {
-    python "E:\OneDrive\Documents\Workspace\dotfiles\powershell\cwebp.py"
+    python "$PSScriptRoot\cwebp.py"
 }
 
 # change directory Alias
@@ -73,6 +73,8 @@ function Set-LocationKeyword {
         "~" { Set-Location "$ENV:onedrive\jskherman" }
         "dotf" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
         "dotfiles" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
+        "shortcuts" { Set-Location "$ENV:onedrive\jskherman\shortcuts" }
+        "sc" { Set-Location "$ENV:onedrive\jskherman\shortcuts" }
         "dl"   { Set-Location "$ENV:USERPROFILE\Downloads" }
         "desk" { Set-Location "$ENV:onedrive\Desktop" }
         "desktop" { Set-Location "$ENV:onedrive\Desktop" }
