@@ -47,6 +47,18 @@ function qvg { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim-qt $
 
 
 # ==== Custom Functions ==== #
+function Check-Admin {
+    $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+    if ($currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        # The user is an administrator, continue with the rest of the function
+        return $true
+    } else {
+        # The user is not an administrator, print a message and exit
+        Write-Host "`nError: this function requires admin privileges.`nPlease run PowerShell as an administrator and try again."
+        return $false
+    }
+}
+
 # Git add, commit, push
 function gitacp { git add .; git commit -m "$args"; git push}
 
@@ -60,7 +72,13 @@ function rview { rich "$args" --emoji -y -w 90}
 function pipf { python -m pip freeze | Out-File -Encoding UTF8 "$args"}
 
 function conwebp {
-    python "$PSScriptRoot\cwebp.py"
+  python "$PSScriptRoot\cwebp.py"
+}
+
+function winutil {
+  if (Check-Admin) {
+    irm "https://christitus.com/win" | iex
+  }
 }
 
 # change directory Alias
@@ -145,6 +163,8 @@ function dlyt {
     Write-Error "Invalid format specified. Please specify either 'video' or 'audio'."
   }
 }
+
+
 
 # # Convert videos to various formats
 # function convert-vid {
