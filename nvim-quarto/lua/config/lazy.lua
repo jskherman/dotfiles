@@ -17,13 +17,18 @@ require("lazy").setup("plugins", {
 	defaults = {
 		version = false,
 	},
+	spec = {
+		-- add LazyVim and import its plugins
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- import any extras modules here
+		{ import = "lazyvim.plugins.extras.util.project" },
+	},
 	dev = {
 		path = "~/projects",
 		-- patterns = { "jmbuhr", "quarto-dev" },
 		fallback = true,
 	},
 	install = { colorscheme = { "catppuccin", "habamax" } },
-	-- checker = { enabled = true },
 	rtp = {
 		disabled_plugins = {
 			"gzip",
