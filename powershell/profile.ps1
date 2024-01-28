@@ -36,7 +36,7 @@ $env:NVIM_APPNAME = 'nvim'
 New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
 
 function vt { $env:NVIM_APPNAME = 'nvim'; nvim $args }
-function vg { $env:NVIM_APPNAME = 'nvim'; nvim-qt $args }
+function vg { $env:NVIM_APPNAME = 'nvim'; neovide $args }
 
 # $NVIM_APPNAME = 'nvim-quarto'
 function qvt { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim $args }
