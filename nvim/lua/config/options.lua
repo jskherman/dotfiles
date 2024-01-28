@@ -66,7 +66,7 @@ vim.o.shellxquote = ""
 vim.g.markdown_recommended_style = 0
 
 -- Set path to python3 executable for neovim
-vim.g.python3_host_prog = "C:\\Users\\Je Sian Keith Herman\\.pyenv\\pyenv-win\\versions\\3.10.11\\python.exe"
+-- vim.g.python3_host_prog = "C:\\Users\\Je Sian Keith Herman\\.pyenv\\pyenv-win\\versions\\3.10.11\\python.exe"
 
 ------------------------------------------------------------------------------
 -- UltiSnips config
@@ -116,3 +116,13 @@ vim.g.vimtex_syntax_conceal = {
   sections = 0,
   styles = 1,
 }
+
+vim.g.beancount_root = "main.beancount"
+
+-- Neovide settings
+vim.g.neovide_remember_window_size = true
+vim.o.guifont = "Cascadia Mono:h13"
+vim.g.neovide_cursor_animate_command_line = true
+vim.g.neovide_cursor_vfx_mode = "railgun"
+vim.g.neovide_cursor_vfx_particle_lifetime = 1.4
+vim.g.neovide_cursor_vfx_particle_density = 8.0
