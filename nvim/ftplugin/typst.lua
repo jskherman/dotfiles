@@ -1,5 +1,5 @@
 -- This file is automatically loaded by lazyvim.config.init
-local Util = require("lazyvim.util")
+-- local Util = require("lazyvim.util")
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
@@ -18,6 +18,3 @@ vim.opt.spell = true
 -- chomosuke/typst-preview.nvim
 map("n", "<leader>cp", "<cmd>TypstPreview<CR>") -- Run TypstWatch
 map("n", "<leader>cq", "<cmd>TypstPreviewStop<CR>") -- Run TypstWatch
-
-
-
