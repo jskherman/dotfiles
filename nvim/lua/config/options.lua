@@ -121,7 +121,7 @@ vim.g.beancount_root = "main.beancount"
 
 -- Neovide settings
 vim.g.neovide_remember_window_size = true
-vim.o.guifont = "Cascadia Mono:h13"
+vim.o.guifont = "Cascadia Code:h13"
 vim.g.neovide_cursor_animate_command_line = true
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_cursor_vfx_particle_lifetime = 1.4
