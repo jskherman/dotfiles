@@ -51,7 +51,7 @@ return {
         filesystem = {
           window = {
             mappings = {
-              ["CR"] = "system_open",
+              ["<cr>"] = "system_open",
             },
           },
           commands = {
@@ -59,7 +59,7 @@ return {
               local node = state.tree:get_node()
               local path = node:get_id()
               path = vim.fn.shellescape(path, 1)
-              if vim.list_contains({ "jpg", "png", "jpeg", "pdf" }, node.ext) then
+              if vim.tbl_contains({ "jpg", "jpeg", "jfif", "png", "gif", "pdf" }, node.ext) then
                 -- Windows: open in default system application
                 if vim.fn.has("win64") ~= 0 then
                   vim.cmd("!start " .. path)
