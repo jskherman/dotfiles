@@ -31,6 +31,9 @@ map("n", "j", "<Down>", { noremap = true, silent = true })
 map("n", "k", "<Up>", { noremap = true, silent = true })
 map("n", "l", "<Right>", { noremap = true, silent = true })
 
+-- Close all buffers
+map("n", "<leader>bq", "<cmd>%bd<CR>", { desc = "Close all buffers" })
+map("n", "<leader>qp", "<cmd>%bd|Telescope projects<CR>", { desc = "Close buffers and switch project" })
 -- ----------------------------------------------------------------------------
 
 -- ==== Plugins ====
