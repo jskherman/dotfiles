@@ -20,11 +20,11 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # ==== Custom Aliases ==== #
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name which -Value Get-Command
-New-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
-New-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
-# New-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
-New-Alias chrome "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
-New-Alias ripgrep "rg"
+Set-Alias flyctl "$env:USERPROFILE\.fly\bin\flyctl.exe"
+Set-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
+# Set-Alias pnpm "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe\pnpm-win-x64.exe"
+# Set-Alias chrome "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
+Set-Alias ripgrep "rg"
 
 function inkscape {
     wsl /usr/bin/inkscape $args
@@ -33,7 +33,8 @@ function inkscape {
 #### Neovim ####
 $env:NVIM_APPNAME = 'nvim'
 
-New-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
+function vim { $env:NVIM_APPNAME = 'nvim'; neovide $args }
+Set-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
 
 function vt { $env:NVIM_APPNAME = 'nvim'; nvim $args }
 function vg { $env:NVIM_APPNAME = 'nvim'; nvim-qt $args }
@@ -41,10 +42,6 @@ function vg { $env:NVIM_APPNAME = 'nvim'; nvim-qt $args }
 # $NVIM_APPNAME = 'nvim-quarto'
 function qvt { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim $args }
 function qvg { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim-qt $args }
-
-
-
-
 
 # ==== Custom Functions ==== #
 function Check-Admin {
@@ -76,9 +73,7 @@ function conwebp {
 }
 
 function winutil {
-  if (Check-Admin) {
-    irm "https://christitus.com/win" | iex
-  }
+  irm "https://christitus.com/win" | iex
 }
 
 # change directory Alias
