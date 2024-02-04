@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 -- This file is automatically loaded by lazyvim.config.init
-local Util = require("lazyvim.util")
+-- local Util = require("lazyvim.util")
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
@@ -26,10 +26,10 @@ map("v", "<A-Down>", ":m +1<CR>", { desc = "Move line down" }) -- move line down
 map("i", "<C-;>", "<C-g>u<Esc>[s1z=`]a<C-g>u") -- <zg> to add custom words to spellfile
 
 -- Map hjkl to arrow keys
-map("n", "h", "<Left>", { noremap = true, silent = true })
-map("n", "j", "<Down>", { noremap = true, silent = true })
-map("n", "k", "<Up>", { noremap = true, silent = true })
-map("n", "l", "<Right>", { noremap = true, silent = true })
+map("n", "h", "<Left>")
+map("n", "j", "<Down>")
+map("n", "k", "<Up>")
+map("n", "l", "<Right>")
 
 -- Close all buffers
 map("n", "<leader>bq", "<cmd>%bd<CR>", { desc = "Close all buffers" })
@@ -46,6 +46,10 @@ map("n", "<localleader>lw", "<cmd>VimtexCountWords<CR>", { desc = "Count words i
 map("n", "<localleader>l;", "<Cmd>update<CR><Cmd>VimtexCompileSS<CR>", { desc = "SS Compile" })
 
 -- LuaSnip / Ultisnips keybindings
-map("n", "<leader>xs", "<cmd>lua require('luasnip').snippets={}; require('luasnip.loaders.from_lua').load({ paths = { './LuaSnip' } })<CR>", { desc = "Reload LuaSnip" })
+map(
+  "n",
+  "<leader>xs",
+  "<cmd>lua require('luasnip').snippets={}; require('luasnip.loaders.from_lua').load({ paths = { './LuaSnip' } })<CR>",
+  { desc = "Reload LuaSnip" }
+)
 -- map("n", "<leader>xs", "<cmd>call UltiSnips#RefreshSnippets()<CR>", { desc = "Reload Ultisnips" })
-
