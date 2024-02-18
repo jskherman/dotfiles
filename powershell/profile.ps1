@@ -76,6 +76,10 @@ function winutil {
   irm "https://christitus.com/win" | iex
 }
 
+function 1dmount {
+  rclone mount --vfs-cache-mode full --network-mode onedrive: O:
+}
+
 # change directory Alias
 function Set-LocationKeyword {
     param (
