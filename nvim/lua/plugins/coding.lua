@@ -51,7 +51,7 @@ return {
         filesystem = {
           window = {
             mappings = {
-              ["<cr>"] = "system_open",
+              ["o"] = "system_open",
             },
           },
           commands = {
