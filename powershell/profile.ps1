@@ -77,7 +77,17 @@ function winutil {
 }
 
 function 1dmount {
-  rclone mount --vfs-cache-mode full --network-mode onedrive: O:
+    param (
+        [string]$Path = ''
+    )
+
+    if ($Path -ne '') {
+        $remotePath = "onedrive:$Path"
+    } else {
+        $remotePath = "onedrive:"
+    }
+
+    rclone mount --vfs-cache-mode full --network-mode $remotePath "O:"
 }
 
 # change directory Alias
@@ -237,7 +247,7 @@ function convert-vid {
     }
 
     try {
-        & ffmpeg.exe $ffmpegArgs
+        & ./ffmpeg.exe $ffmpegArgs
     } catch {
         Write-Error "Failed to convert video: $_"
     }
