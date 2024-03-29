@@ -90,6 +90,22 @@ function 1dmount {
     rclone mount --vfs-cache-mode full --network-mode $remotePath "O:"
 }
 
+function gdmount {
+    param (
+        [string]$Path = ''
+    )
+
+    if ($Path -eq '1') {
+      $remotePath = "gd:Board Review/ARC／Reg-M2024 [IN-PERSON]"
+    } elseif ($Path -ne '') {
+      $remotePath = "gd:$Path"
+    } else {
+      $remotePath = "gd:"
+    }
+
+    rclone mount --vfs-cache-mode full --network-mode $remotePath "G:"
+}
+
 # change directory Alias
 function Set-LocationKeyword {
     param (
