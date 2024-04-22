@@ -11,6 +11,14 @@ reviewdays_left := DateDiff(20231125, A_Now, "D")
     return
 }
 
+:*:daily;;:: {
+    today := FormatTime(A_Now, "yyyy-MM-dd ddd")
+    days_lived := DateDiff(A_Now, 20010529, "D")
+    SendText Format("## {1}", today)
+    Send "{Enter}{Enter}"
+    SendText Format("``{1}`` This day marks ``{2:05}`` planetary rotations of Earth since I arrived.", FormatTime(, "HH:mm"), days_lived)
+}
+
 ::lday;;:: {
     ; Days remaining for review
     SendInput reviewdays_left
