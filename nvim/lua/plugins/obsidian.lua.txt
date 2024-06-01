@@ -2,25 +2,27 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
-  -- ft = "markdown",
+  ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  event = {
-    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-    "BufReadPre D:/jskherman/brain2/**.md",
-    "BufNewFile D:/jskherman/brain2/**.md",
-  },
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+  --   "BufReadPre path/to/my-vault/**.md",
+  --   "BufNewFile path/to/my-vault/**.md",
+  -- },
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
 
     -- see below for full list of optional dependencies 👇
+    "hrsh7th/nvim-cmp",
+    "nvim-telescope/telescope.nvim",
   },
   opts = {
     workspaces = {
       {
         name = "personal",
-        path = "D:/jskherman/brain2",
+        path = "D:\\jskherman\\brain2",
       },
       -- {
       --   name = "work",
@@ -28,6 +30,86 @@ return {
       -- },
     },
 
-    -- see below for full list of options 👇
+    daily_notes = {
+      folder = "2+Journal\\2024",
+      date_format = "%Y-%m-%d",
+      alias_format = "%Y-%m-%d",
+      template = "daily_nvim.md",
+    },
+
+    completion = {
+      -- Set to false to disable completion.
+      nvim_cmp = true,
+      -- Trigger completion at 2 chars.
+      min_chars = 2,
+    },
+
+    -- Optional, configure key mappings. These are the defaults.
+    -- If you don't want to set any keymappings this way then set 'mappings = {}'.
+    mappings = {
+      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+      ["gf"] = {
+        action = function()
+          return require("obsidian").util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      },
+      -- Toggle check-boxes.
+      ["<leader>ch"] = {
+        action = function()
+          return require("obsidian").util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
+    },
+
+    preferred_link_style = "wiki",
+
+    templates = {
+      subdir = "_assets\\templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+      -- A map for custom variables, the key should be the variable and the value a function
+      substitutions = {
+        numday = function()
+          -- Get today's date in Unix timestamp (seconds since the Unix epoch)
+          local now = os.time()
+          -- Convert the specific date to Unix timestamp
+          local specificDate = os.time({ year = 2001, month = 5, day = 29 })
+          -- Calculate the difference in days
+          local diffDays = math.floor((now - specificDate) / (24 * 60 * 60))
+          -- Format the result as a five-digit number, padding with zeros if necessary
+          local paddedResult = string.format("%05d", diffDays)
+          return paddedResult
+        end,
+        year = function()
+          return os.date("%Y", os.time())
+        end,
+        month_abbr = function()
+          return os.date("%b", os.time())
+        end,
+      },
+    },
+
+    picker = {
+      -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
+      name = "telescope.nvim",
+      -- Optional, configure key mappings for the picker. These are the defaults.
+      -- Not all pickers support all mappings.
+      mappings = {
+        -- Create a new note from your query.
+        new = "<C-x>",
+        -- Insert a link to the selected note.
+        insert_link = "<C-l>",
+      },
+    },
+
+    -- Specify how to handle attachments.
+    attachments = {
+      -- The default folder to place images in via `:ObsidianPasteImg`.
+      -- If this is a relative path it will be interpreted as relative to the vault root.
+      -- You can always override this per image by passing a full path to the command instead of just a filename.
+      img_folder = "_media",
+    },
   },
 }
