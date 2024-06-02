@@ -42,3 +42,14 @@
 /* String phrases */
 
 ::focus;;::🎧 Focus Time
+
+; IDs
+::nanoid;;:: {
+    try {
+        ExitCode := RunWait("pwsh -NoLogo -NoProfile -c curl nanoid.dev/nucsS16 | clip",,"Hide")
+        Send "^v"
+    } catch {
+        MsgBox("Error fetching nanoid.")
+    }
+}
+
