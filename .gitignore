@@ -19,3 +19,4 @@ lazyvim.json
 
 # Neovim
 *.add.spl
+.wakatime-project
