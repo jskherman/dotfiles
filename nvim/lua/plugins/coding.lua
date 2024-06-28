@@ -46,37 +46,37 @@ return {
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
-    config = function()
-      require("neo-tree").setup({
-        filesystem = {
-          window = {
-            mappings = {
-              ["o"] = "system_open",
-            },
-          },
-          commands = {
-            system_open = function(state)
-              local node = state.tree:get_node()
-              local path = node:get_id()
-              path = vim.fn.shellescape(path, 1)
-              if vim.tbl_contains({ "jpg", "jpeg", "jfif", "png", "gif", "pdf" }, node.ext) then
-                -- Windows: open in default system application
-                if vim.fn.has("win64") ~= 0 then
-                  vim.cmd("!start " .. path)
-                -- Linux: open file in default application
-                elseif vim.fn.has("linux") ~= 0 then
-                  vim.cmd("!xdg-open " .. path)
-                -- macOS: open file in default application in the background.
-                elseif vim.fn.has("mac") ~= 0 then
-                  vim.cmd("!open " .. path)
-                end
-              else
-                vim.cmd.edit(path)
-              end
-            end,
-          },
-        },
-      })
-    end,
+    -- config = function()
+    --   require("neo-tree").setup({
+    --     filesystem = {
+    --       window = {
+    --         mappings = {
+    --           ["o"] = "system_open",
+    --         },
+    --       },
+    --       commands = {
+    --         system_open = function(state)
+    --           local node = state.tree:get_node()
+    --           local path = node:get_id()
+    --           path = vim.fn.shellescape(path, 1)
+    --           if vim.tbl_contains({ "jpg", "jpeg", "jfif", "png", "gif", "pdf" }, node.ext) then
+    --             -- Windows: open in default system application
+    --             if vim.fn.has("win64") ~= 0 then
+    --               vim.cmd("!start " .. path)
+    --             -- Linux: open file in default application
+    --             elseif vim.fn.has("linux") ~= 0 then
+    --               vim.cmd("!xdg-open " .. path)
+    --             -- macOS: open file in default application in the background.
+    --             elseif vim.fn.has("mac") ~= 0 then
+    --               vim.cmd("!open " .. path)
+    --             end
+    --           else
+    --             vim.cmd.edit(path)
+    --           end
+    --         end,
+    --       },
+    --     },
+    --   })
+    -- end,
   },
 }
