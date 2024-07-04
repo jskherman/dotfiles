@@ -12,7 +12,7 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 # ==== Enable autocomplete commands ==== #
-. "$PSScriptRoot\deta.ps1"
+# . "$PSScriptRoot\deta.ps1"
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -26,22 +26,16 @@ Set-Alias fly "$env:USERPROFILE\.fly\bin\flyctl.exe"
 # Set-Alias chrome "$env:LOCALAPPDATA\Chromium\Application\chrome.exe"
 Set-Alias ripgrep "rg"
 
-function inkscape {
-    wsl /usr/bin/inkscape $args
-}
+# function inkscape {
+#     wsl /usr/bin/inkscape $args
+# }
 
 #### Neovim ####
-$env:NVIM_APPNAME = 'nvim'
-
 function vim { $env:NVIM_APPNAME = 'nvim'; neovide $args }
-Set-Alias lvim "$env:USERPROFILE\.local\bin\lvim.ps1"
 
-function vt { $env:NVIM_APPNAME = 'nvim'; nvim $args }
-function vg { $env:NVIM_APPNAME = 'nvim'; neovide $args }
-
-# $NVIM_APPNAME = 'nvim-quarto'
-function qvt { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim $args }
-function qvg { $env:NVIM_APPNAME = 'nvim-quarto'; $env:SHELL = 'pwsh'; nvim-qt $args }
+# $env:NVIM_APPNAME = 'nvim'
+# function vt { $env:NVIM_APPNAME = 'nvim'; nvim $args }
+# function vg { $env:NVIM_APPNAME = 'nvim'; neovide $args }
 
 # ==== Custom Functions ==== #
 function Check-Admin {
@@ -68,10 +62,6 @@ function rview { rich "$args" --emoji -y -w 90}
 # Python pip freeze to file in UTF8 encoding
 function pipf { python -m pip freeze | Out-File -Encoding UTF8 "$args"}
 
-function conwebp {
-  python "$PSScriptRoot\cwebp.py"
-}
-
 function winutil {
   irm "https://christitus.com/win" | iex
 }
@@ -87,7 +77,7 @@ function 1dmount {
         $remotePath = "onedrive:"
     }
 
-    rclone mount --vfs-cache-mode full --network-mode $remotePath "O:"
+    rclone mount --vfs-cache-mode full --onedrive-delta --network-mode $remotePath "O:"
 }
 
 function gdmount {
@@ -113,22 +103,20 @@ function Set-LocationKeyword {
     )
 
     switch ($Keyword) {
-        "~" { Set-Location "$ENV:onedrive\jskherman" }
-        "dotf" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
-        "dotfiles" { Set-Location "$ENV:onedrive\jskherman\dotfiles" }
-        "shortcuts" { Set-Location "$ENV:onedrive\jskherman\shortcuts" }
-        "sc" { Set-Location "$ENV:onedrive\jskherman\shortcuts" }
+        "~" { Set-Location "$ENV:JSKHOME" }
+        "home" { Set-Location "$ENV:JSKHOME" }
+        "dev" { Set-Location "$ENV:JSKHOME\dev" }
+        "dotf" { Set-Location "$ENV:JSKHOME\dev\dotfiles" }
+        "dotfiles" { Set-Location "$ENV:JSKHOME\dev\dotfiles" }
         "dl"   { Set-Location "$ENV:USERPROFILE\Downloads" }
-        "desk" { Set-Location "$ENV:onedrive\Desktop" }
-        "desktop" { Set-Location "$ENV:onedrive\Desktop" }
-        "dev" { Set-Location "$ENV:onedrive\jskherman\dev" }
-        "home" { Set-Location "$ENV:onedrive\jskherman" }
-        "pics" { Set-Location "$ENV:onedrive\Pictures" }
-        "docs" { Set-Location "$ENV:onedrive\Documents" }
-        "vids" { Set-Location "$ENV:onedrive\Videos" }
-        "basecamp"  { Set-Location "$ENV:onedrive\Documents\Basecamp" }
-        "archive" { Set-Location "$ENV:onedrive\Documents\Archive" }
-        "notes" { Set-Location "$ENV:onedrive\jskherman\notes" }
+        "desk" { Set-Location "$ENV:USERPROFILE\Desktop" }
+        "desktop" { Set-Location "$ENV:USERPROFILE\Desktop" }
+        "pics" { Set-Location "$ENV:USERPROFILE\Pictures" }
+        "docs" { Set-Location "$ENV:USERPROFILE\Documents" }
+        "vids" { Set-Location "$ENV:USERPROFILE\Videos" }
+        "archive" { Set-Location "$env:JSKHOME\_archive" }
+        "brain2" { Set-Location "$ENV:JSKHOME\brain2" }
+        "notes" { Set-Location "$ENV:JSKHOME\brain2" }
         "history" { Set-Location "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\" }
         default { Set-Location $Keyword }
     }
@@ -172,21 +160,6 @@ function findconflicts {
   # Get all files under the base directory recursively, and filter out files that don't match the filename pattern and files in the excluded directories
   Get-ChildItem -Recurse -File | Where-Object { $_.Name -match '(conflict \d{4}(?:-\d{2}){5})|(DESKTOP-LRMDILT)' -and ($excludedPaths | ForEach-Object { $_.ToString() }) -notcontains $_.DirectoryName }
     | Resolve-Path | Select-Object -ExpandProperty ProviderPath | ForEach-Object { $_.Substring($baseDir.ToString().Length + 1) }
-}
-
-# Function to download YouTube videos with yt-dlp
-function dlyt {
-  param (
-    [string]$Format = "video" # The format to download the video in, either "video" or "audio"
-  )
-
-  if ($Format -eq "video") {
-    yt-dlp --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --sub-format "srt/best" --sub-lang en --write-sub --embed-subs --add-metadata --xff "default" --add-header "User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --downloader aria2c $args #--cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt"
-  } elseif ($Format -eq "audio") {
-    yt-dlp --format "ba" --extract-audio --audio-format mp3 --output "E:\OneDrive\Documents\Archive\apps\youtube-dl\Downloads\%(title)s.%(ext)s" --add-metadata --xff "default" --add-header "User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" --downloader aria2c $args #--cookies "E:\OneDrive\Documents\Archive\apps\youtube-dl\cookies.txt"
-  } else {
-    Write-Error "Invalid format specified. Please specify either 'video' or 'audio'."
-  }
 }
 
 
