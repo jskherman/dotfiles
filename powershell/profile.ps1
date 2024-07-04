@@ -1,3 +1,5 @@
+# Remember to set environment variable `JSKHOME` to your root workspace directory
+
 # ==== Powershell Theme ==== #
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\clean-detailed.omp.json" | Invoke-Expression
 # half-life, cert, emodipt-extend, clean-detailed, free-ukraine, hul10, takuya, material, slim
