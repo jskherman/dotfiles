@@ -1,76 +1,38 @@
-#t:: {
-    Run("wt.exe")
-}
+; Custom Windows Modifier shortcuts
+#o:: Run(EnvGet("LOCALAPPDATA") "\Programs\Obsidian\Obsidian.exe")          ; Obsidian
+#c:: Run(EnvGet("LOCALAPPDATA") "\Programs\Microsoft VS Code\Code.exe")     ; VS Code
+#t:: Run("wt.exe")                                                          ; Windows Terminal
+#+e:: Run(EnvGet("PROGRAMFILES") "\Everything\Everything.exe")              ; Everything Search
+#+g:: Run("https://github.com")                                             ; GitHub
+#+t:: Run(EnvGet("APPDATA") "\Telegram Desktop\Telegram.exe")               ; Telegram
 
-global komorebi_run := false
-#+K:: {
-    ; Use Alt+F11 to toggle saving to daily note ON/OFF
-    global komorebi_run := !komorebi_run
-    if (komorebi_run) {
-        Run(A_WorkingDir "\komorebi\komorebi.ahk")
-        Run("komorebic start --await-configuration",, "Hide")
-        TrayTip("Komorebi is now running. Press Win+Shift+K to stop.")
-        return
-    } else if (!komorebi_run) {
-        DetectHiddenWindows true
-        Run("komorebic stop",, "Hide")
-        WinClose("komorebi.ahk")
-        TrayTip("Komorebi has been stopped. Press Win+Shift+K to start.")
-        DetectHiddenWindows false
-        return
-    }
-}
+;=====================================================================|
+; Remap Insert key as a modifier key                                  |
+;=====================================================================|
 
-;; Todoist Task Templates
-;#HotIf WinActive("– Todoist")
-;; Win + Alt + T
-;#!T:: {
-;    ; study_item := InputBox("Please enter what you are studying:", "Todoist: Chapter?", "W300 H100")
-;    ; Create a GUI window
-;    Prompt := Gui(, "Todoist Study Item")
-;
-;    ; Prompt for the study item
-;    Prompt.Add("Text", "h1 w250", "")
-;    Prompt.Add("Text", "R1 w250 vPrompt1", "Please enter what you are studying:")
-;    study_item := Prompt.AddEdit("R1 w250 vStudyItem", "")
-;    Prompt.Add("Text", "h1 w250", "")
-;
-;    ; Prompt for the category
-;    Prompt.Add("Text", "R1 w250 vPrompt2", "What is the subject category?")
-;    category := Prompt.AddDropDownList("R3 w250 vCategoryChoice Choose1", ["D1-PCP", "D2-CHE", "D3-GEN"])
-;    Prompt.Add("Text", "R1 w250", "")
-;
-;    ; Add a submit button
-;    Prompt.AddButton("Default x35 w80 vSubmitBtn", "&Submit").OnEvent("Click", Submit)
-;    Prompt.AddButton("x+40 w80 vCloseBtn", "&Cancel").OnEvent("Click", Close)
-;
-;    ; Show the GUI
-;    Prompt.Show()
-;
-;    Close(*) {
-;        Prompt.Destroy()
-;    }
-;
-;    ; Event to execute when the Submit button is clicked
-;    Submit(*) {
-;        ; Save the text to be inserted to the clipboard
-;        A_Clipboard := Format('
-;            (
-;                Read {1} @{2}
-;                Answer {1} Problems @{2}
-;                Anki: Save (5) Questions from {1} @{2}
-;                Anki: Create Flashcards from {1} @{2}
-;            )',
-;            study_item.Value, category.Text
-;        )
-;        ; Close the GUI
-;        Prompt.Destroy()
-;        ; Wait for the GUI to close
-;        WinWaitClose("Todoist Study Item")
-;        ; Activate the Todoist window
-;        WinActivate("– Todoist")
-;        ; Send the text to be inserted
-;        Send("^v{Enter}")
-;    }
-;}
-;#HotIf
+; ; Remap Insert as the Hyper key: Ctrl + Alt + Shift + Win
+; ~Ins:: {
+;     Send "{Ctrl DownTemp}{Shift DownTemp}{Alt DownTemp}{LWin DownTemp}"
+;     KeyWait "Ins"
+;     Send "{Ctrl Up}{Shift Up}{Alt Up}{LWin Up}"
+; }
+
+; Remap Insert Key to middle click (mouse)
+Ins::MButton
+
+; Remap Function keys to have access to F13-F24
+Ins & F1::F13
+Ins & F2::F14
+Ins & F3::F15
+Ins & F4::F16
+Ins & F5::F17
+Ins & F6::F18
+Ins & F7::F19
+Ins & F8::F20
+Ins & F9::F21
+Ins & F10::F22
+Ins & F11::F23
+Ins & F12::F24
+
+
+;=====================================================================|
