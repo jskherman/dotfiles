@@ -1,0 +1,19 @@
+snippet __main__ "Add script 'main' guard"
+def main() -> None:
+    ${0:pass}
+
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet fn "Create new function"
+def ${1:function_name}(${2:arguments}) -> ${3:return_type}:
+    ${4:function_logic}
+
+$0
+endsnippet
+
+snippet listcomp "Create a list comprehension"
+${1:var} = [${5:x} for ${2:x} in ${3:iterable} if ${4:condition}]$0
+endsnippet
