@@ -2,8 +2,11 @@
 #o:: Run(EnvGet("LOCALAPPDATA") "\Programs\Obsidian\Obsidian.exe")          ; Obsidian
 #c:: Run(EnvGet("LOCALAPPDATA") "\Programs\Microsoft VS Code\Code.exe")     ; VS Code
 #t:: Run("wt.exe")                                                          ; Windows Terminal
+#+d:: Run(EnvGet("USERPROFILE") "\Downloads")                               ; Open Downloads folder
 #+e:: Run(EnvGet("PROGRAMFILES") "\Everything\Everything.exe")              ; Everything Search
 #+g:: Run("https://github.com")                                             ; GitHub
+#+h:: Run(EnvGet("JSKHOME"))                                                ; Open Windows Explorer to "Home"
+#+p:: Run(EnvGet("USERPROFILE") "\Pictures\Screenshots")                    ; Open Screenshots folder
 #+t:: Run(EnvGet("APPDATA") "\Telegram Desktop\Telegram.exe")               ; Telegram
 
 ;=====================================================================|
