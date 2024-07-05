@@ -2,7 +2,6 @@
 
 /* Variables */
 days_lived := DateDiff(A_Now, 20010529, "D")
-reviewdays_left := DateDiff(20231125, A_Now, "D")
 
 /* The Days */
 ::day;;:: {
@@ -12,24 +11,13 @@ reviewdays_left := DateDiff(20231125, A_Now, "D")
 }
 
 :*:daily;;:: {
-    today := FormatTime(A_Now, "yyyy-MM-dd ddd")
+    today := FormatTime(A_Now, "yyyy-MM-dd | ddd")
     days_lived := DateDiff(A_Now, 20010529, "D")
     SendText Format("### {1}", today)
     Send "{Enter}{Enter}"
     SendText Format("- ``{1}`` This is ``Day #{2:05}`` of my existence.", FormatTime(, "HH:mm"), days_lived)
 }
 
-::lday;;:: {
-    ; Days remaining for review
-    SendInput reviewdays_left
-    return
-}
-
-::rday;;:: {
-    ; Days remaining for review
-    SendInput Format("{1:02}", 100 - reviewdays_left)
-    return
-}
 
 ::today;;:: {
     ; Today's date as YYYY-MM-DD
