@@ -1,8 +1,8 @@
 #Requires AutoHotkey v2.0
 
 ; Accents
-:*:n~::ñ
-:*:e~::é
+::n~::ñ
+::e~::é
 ::a~::á
 
 ; Symbols
@@ -46,10 +46,9 @@
 ; IDs
 ::nanoid;;:: {
     try {
-        ExitCode := RunWait("pwsh -NoLogo -NoProfile -c curl nanoid.dev/nucsS16 | clip",,"Hide")
+        ExitCode := RunWait("pwsh -NoLogo -NoProfile -c curl nanoid.dev/nucsS16 | clip", , "Hide")
         Send "^v"
     } catch {
         MsgBox("Error fetching nanoid.")
     }
 }
-
