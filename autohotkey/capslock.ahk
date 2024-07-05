@@ -1,3 +1,5 @@
+#Requires AutoHotkey v2.0
+
 ;=====================================================================o
 ;                   Feng Ruohang's AHK Script                         |
 ;                      CapsLock Enhancement                           |
