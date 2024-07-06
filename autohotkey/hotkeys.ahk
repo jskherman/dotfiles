@@ -37,5 +37,26 @@ Ins & F10::F22
 Ins & F11::F23
 Ins & F12::F24
 
+; Insert + m to toggle random mouse movement
+global movingmouse := false
+Ins & m:: ToggleMouseMove()
+
+ToggleMouseMove() {
+    CoordMode "Mouse", "Screen"
+
+    global movingmouse := !movingmouse
+    delay := 1000
+
+    RandomMouseMove() {
+        Sleep(Random(500, 4000))
+
+        x := Random(10, A_ScreenWidth // 2)
+        y := Random(10, A_ScreenHeight // 2)
+        spd := Random(50, 100)
+        MouseMove x, y, spd
+    }
+
+    SetTimer(RandomMouseMove, (movingmouse ? delay : 0))
+}
 
 ;=====================================================================|
