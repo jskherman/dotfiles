@@ -58,5 +58,7 @@ ToggleMouseMove() {
 
     SetTimer(RandomMouseMove, (movingmouse ? delay : 0))
 }
+; Windows + Insert to launch Komorebi
+Ins & k:: Run('pwsh -Command "komorebic start --ahk"', , "Hide")
 
 ;=====================================================================|

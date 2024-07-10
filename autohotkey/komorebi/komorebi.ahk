@@ -1,93 +1,143 @@
+; .shell pwsh
+#Requires AutoHotkey v2.0.2
 #SingleInstance Force
 
-; Load library
-#Include komorebic.lib.ahk
-; Load configuration
-#Include komorebi.generated.ahk
+;=====================================================================|
 
-; Send the ALT key whenever changing focus to force focus changes
-AltFocusHack("enable")
-; Default to cloaking windows when switching workspaces
-WindowHidingBehaviour("cloak")
-; Set cross-monitor move behaviour to insert instead of swap
-CrossMonitorMoveBehaviour("Insert")
-; Enable hot reloading of changes to this file
-WatchConfiguration("enable")
+Komorebic(cmd) {
+    RunWait(format("komorebic.exe {}", cmd), , "Hide")
+}
 
-; Create named workspaces I-V on monitor 0
-EnsureNamedWorkspaces(0, "I II III IV V")
-; You can do the same thing for secondary monitors too
-; EnsureNamedWorkspaces(1, "A B C D E F")
 
-; Assign layouts to workspaces, possible values: bsp, columns, rows, vertical-stack, horizontal-stack, ultrawide-vertical-stack
-NamedWorkspaceLayout("I", "bsp")
-
-; Set the gaps around the edge of the screen for a workspace
-NamedWorkspacePadding("I", 20)
-; Set the gaps between the containers for a workspace
-NamedWorkspaceContainerPadding("I", 20)
-
-; You can assign specific apps to named workspaces
-; NamedWorkspaceRule("exe", "Firefox.exe", "III")
-
-; Configure the invisible border dimensions
-InvisibleBorders(7, 0, 14, 7)
-
-; Uncomment the next lines if you want a visual border around the active window
-; ActiveWindowBorderColour(66, 165, 245, "single")
-; ActiveWindowBorderColour(256, 165, 66, "stack")
-; ActiveWindowBorderColour(255, 51, 153, "monocle")
-
-CompleteConfiguration()
+>!q:: Komorebic("close")
+>!m:: Komorebic("minimize")
 
 ; Focus windows
-#!h::Focus("left")
-#!j::Focus("down")
-#!k::Focus("up")
-#!l::Focus("right")
-#!+[::CycleFocus("previous")
-#!+]::CycleFocus("next")
+>!h:: Komorebic("focus left")
+>!j:: Komorebic("focus down")
+>!k:: Komorebic("focus up")
+>!l:: Komorebic("focus right")
+
+>!+[:: Komorebic("cycle-focus previous")
+>!+]:: Komorebic("cycle-focus next")
 
 ; Move windows
-#!+h::Move("left")
-#!+j::Move("down")
-#!+k::Move("up")
-#!+l::Move("right")
-#!+Enter::Promote()
+>!+h:: Komorebic("move left")
+>!+j:: Komorebic("move down")
+>!+k:: Komorebic("move up")
+>!+l:: Komorebic("move right")
 
 ; Stack windows
-#!Left::Stack("left")
-#!Right::Stack("right")
-#!Up::Stack("up")
-#!Down::Stack("down")
-#!;::Unstack()
-#![::CycleStack("previous")
-#!]::CycleStack("next")
+>!Left:: Komorebic("stack left")
+>!Down:: Komorebic("stack down")
+>!Up:: Komorebic("stack up")
+>!Right:: Komorebic("stack right")
+>!;:: Komorebic("unstack")
+>![:: Komorebic("cycle-stack previous")
+>!]:: Komorebic("cycle-stack next")
 
 ; Resize
-#!=::ResizeAxis("horizontal", "increase")
-#!-::ResizeAxis("horizontal", "decrease")
-#!+=::ResizeAxis("vertical", "increase")
-#!+-::ResizeAxis("vertical", "decrease")
+>!=:: Komorebic("resize-axis horizontal increase")
+>!-:: Komorebic("resize-axis horizontal decrease")
+>!+=:: Komorebic("resize-axis vertical increase")
+>!+_:: Komorebic("resize-axis vertical decrease")
 
 ; Manipulate windows
-#!t::ToggleFloat()
-#!+f::ToggleMonocle()
+>!t:: Komorebic("toggle-float")
+>!f:: Komorebic("toggle-monocle")
 
 ; Window manager options
-#!+r::Retile()
-#!p::TogglePause()
+>!+r:: Komorebic("retile")
+>!p:: Komorebic("toggle-pause")
 
 ; Layouts
-#!x::FlipLayout("horizontal")
-#!y::FlipLayout("vertical")
+>!x:: Komorebic("flip-layout horizontal")
+>!y:: Komorebic("flip-layout vertical")
 
 ; Workspaces
-#!1::FocusWorkspace(0)
-#!2::FocusWorkspace(1)
-#!3::FocusWorkspace(2)
+>!1:: Komorebic("focus-workspace 0")
+>!2:: Komorebic("focus-workspace 1")
+>!3:: Komorebic("focus-workspace 2")
+>!4:: Komorebic("focus-workspace 3")
+>!5:: Komorebic("focus-workspace 4")
+>!6:: Komorebic("focus-workspace 5")
+>!7:: Komorebic("focus-workspace 6")
+>!8:: Komorebic("focus-workspace 7")
 
 ; Move windows across workspaces
-#!+1::MoveToWorkspace(0)
-#!+2::MoveToWorkspace(1)
-#!+3::MoveToWorkspace(2)
+>!+1:: Komorebic("move-to-workspace 0")
+>!+2:: Komorebic("move-to-workspace 1")
+>!+3:: Komorebic("move-to-workspace 2")
+>!+4:: Komorebic("move-to-workspace 3")
+>!+5:: Komorebic("move-to-workspace 4")
+>!+6:: Komorebic("move-to-workspace 5")
+>!+7:: Komorebic("move-to-workspace 6")
+>!+8:: Komorebic("move-to-workspace 7")
+
+; Stop Komorebi
+>!F4:: {
+    Run('pwsh -Command "komorebic stop"', , "Hide")
+    ExitApp
+}
+
+; Komorebi Hotkey Cheatsheet
+>!+/:: {
+    cheatsheet := "
+(
+    ┌───────────────┐                                           ┌───────────────┐
+    │ Basic Actions │                                           │ Focus Windows │
+    └───────────────┘                                           └───────────────┘
+
+RAlt + F4 — Close Komorebi                                  RAlt + H — Focus Left
+RAlt +  Q — Close Window                                    RAlt + J — Focus Down
+RAlt +  M — Minimize Window                                 RAlt + K — Focus Up
+                                                                RAlt + L — Focus Right
+                                                        RAlt + Shift + [ — Cycle Focus Previous
+                                                        RAlt + Shift + ] — Cycle Focus Next
+
+    ┌──────────────┐                                            ┌───────────────┐
+    │ Move Windows │                                            │ Stack Windows │
+    └──────────────┘                                            └───────────────┘
+
+RAlt + Shift + H — Move Left                            RAlt + Left  — Stack Left
+RAlt + Shift + J — Move Down                            RAlt + Down  — Stack Down
+RAlt + Shift + K — Move Up                              RAlt + Up    — Stack Up
+RAlt + Shift + L — Move Right                           RAlt + Right — Stack Right
+                                                                RAlt + ; — Unstack
+                                                                RAlt + [ — Cycle Stack Previous
+                                                                RAlt + ] — Cycle Stack Next
+
+    ┌────────┐                                                ┌────────────────────┐
+    │ Resize │                                                │ Manipulate Windows │
+    └────────┘                                                └────────────────────┘
+
+RAlt + = — Increase Horizontal Size                         RAlt + T — Toggle Float
+RAlt + - — Decrease Horizontal Size                         RAlt + F — Toggle Monocle
+RAlt + Shift + = — Increase Vertical Size
+RAlt + Shift + - — Decrease Vertical Size
+
+┌───────────────────────┐                                     ┌─────────┐
+│ Window Mnager Options │                                     │ Layouts │
+└───────────────────────┘                                     └─────────┘
+
+RAlt + Shift + R — Retile                                   RAlt + X — Flip Layout Horizontal
+            RAlt + P — Toggle Pause                             RAlt + Y — Flip Layout Vertical
+
+┌────────────┐
+│ Workspaces │
+└────────────┘
+
+RAlt + 1-8 — Focus Workspace 1-8
+RAlt + Shift + 1-8 — Move to Workspace 1-8
+)"
+
+    ShowCheatsheet() {
+        main := Gui(, "Komorebi Cheatsheet")
+        main.SetFont("s9", "Cascadia Mono")
+        main.AddText("w1000 h750 x+10 y+10", cheatsheet)
+
+        main.Show("w1020 h770")
+    }
+
+    ShowCheatsheet()
+}
