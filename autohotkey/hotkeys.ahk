@@ -37,27 +37,47 @@ Ins & F10::F22
 Ins & F11::F23
 Ins & F12::F24
 
-; Insert + m to toggle random mouse movement
+;=====================================================================|
 global movingmouse := false
-Ins & m:: ToggleMouseMove()
-
 ToggleMouseMove() {
-    CoordMode "Mouse", "Screen"
+    CoordMode "Mouse", "Screen"         ; Set coordinates relative to the entire screen
 
-    global movingmouse := !movingmouse
-    delay := 1000
+    ; Static variables are only initialized once and retain their value between calls
+    global movingmouse := !movingmouse  ; Toggle the state of movingmouse ON/OFF
+    static delay := 1000                       ; One second delay for the timer that calls RandomMouseMove
 
-    RandomMouseMove() {
-        Sleep(Random(500, 4000))
+    RandomMouseMove() {                 ; Define the function that moves the mouse randomly
+        Sleep(Random(500, 4000))        ; Sleep for a random amount of time between 0.5 and 4 seconds
 
-        x := Random(10, A_ScreenWidth // 2)
-        y := Random(10, A_ScreenHeight // 2)
-        spd := Random(50, 100)
-        MouseMove x, y, spd
+        x := Random(10, A_ScreenWidth // 2)     ; Random number of pixels to move the mouse horizontally
+        y := Random(10, A_ScreenHeight // 2)    ; Random number of pixels to move the mouse vertically
+        spd := Random(50, 100)                  ; Random speed to move the mouse
+        MouseMove x, y, spd                     ; Move the mouse to the new position
     }
 
-    SetTimer(RandomMouseMove, (movingmouse ? delay : 0))
+    SetTimer(RandomMouseMove, (movingmouse ? delay : 0))    ; Set the timer to call RandomMouseMove every second
 }
+
+; Insert + m to toggle random mouse movement
+Ins & m:: ToggleMouseMove()
+
+
+;=====================================================================|
+
+; global komorebi_on := false
+
+; ToggleKomorebi() {
+;     global komorebi_on
+;     komorebi_on := !komorebi_on
+
+;     if komorebi_on {
+;         RunWait('pwsh -Command "komorebic start --ahk"', , "Hide")
+;         Persistent
+;     } else {
+;         RunWait('pwsh -Command "komorebic stop"', , "Hide")
+;     }
+; }
+
 ; Windows + Insert to launch Komorebi
 Ins & k:: Run('pwsh -Command "komorebic start --ahk"', , "Hide")
 
