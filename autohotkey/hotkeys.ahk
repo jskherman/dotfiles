@@ -79,6 +79,11 @@ Ins & m:: ToggleMouseMove()
 ; }
 
 ; Windows + Insert to launch Komorebi
-Ins & k:: Run('pwsh -Command "komorebic start --ahk"', , "Hide")
+#Ins:: {
+    Run('pwsh -Command "komorebic start --ahk"', , "Hide")
+    TrayTip("Komorebi started.", "Komorebi AHK", "Iconi")
+    Sleep(1000)
+    TrayTip
+}
 
 ;=====================================================================|
