@@ -4,13 +4,13 @@
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 0, // 20,
-  "default_container_padding": 0, // 20,
+  "default_container_padding": 5, // 20,
   "border": true,
-  "border_width": 0, // 8,
+  "border_width": 4, // 8,
   "border_offset": -1,
   "border_colours": {
-    "single": "#42a5f5",
-    "stack": "#00a542",
+    "single": "#ccff34", // "#00a542",
+    "stack": "#42a5f5",
     "monocle": "#ff3399",
     "unfocused": "#808080"
   },
