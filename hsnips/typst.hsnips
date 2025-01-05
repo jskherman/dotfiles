@@ -1,9 +1,9 @@
 # Define contexts for use
 # Use `> Inspect Editor Tokens and Scopes` to find out what context you're in
 global
-function math(context) { return context.scopes.some(s => s.startsWith("string.other.math"));}
+function math(context) { return context.scopes.some(s => s.startsWith("markup.math.typst"));}
 function comment(context) {return context.scopes.some(s => s.startsWith("comment"));}
-function code(context) {return context.scopes.some(s => s.startsWith("meta.block.code"));}
+function code(context) {return context.scopes.some(s => s.startsWith("string.other.raw.typst") || s.startsWith("markup.raw.block.typst"));}
 endglobal
 
 
