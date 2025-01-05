@@ -238,7 +238,7 @@ function convert-vid {
     }
 
     try {
-        & ./ffmpeg.exe $ffmpegArgs
+        & ffmpeg $ffmpegArgs
     } catch {
         Write-Error "Failed to convert video: $_"
     }
