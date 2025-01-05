@@ -20,6 +20,7 @@ GroupAdd "Snippets", "ahk_exe WindowsTerminal.exe"
 ; Private includes
 #include "private/personal_info.ahk"
 #include "private/hp.ahk"
+#include "private/logs.ahk"
 
 ; Complex scripts
 ; #include "scratchpad/mdsp.ahk"
